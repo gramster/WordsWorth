@@ -1,0 +1,100 @@
+# Texture and colour specs for a monochrome system
+
+# COLOURS:		TEXTURES:
+# ==============================================================
+# Black			Solid
+# White			Line
+#	 		ThinSlash
+# 			ThickSlash
+#		 	ThickBackslash
+#		 	ThinBackslash
+#		 	ThinHatch 
+#		 	ThickHatch 
+#		 	InterleavingLine 
+#		 	WideSpacedDots 
+#		 	CloseSpacedDots 
+# 
+
+# The board squares
+
+BoardColor = White 
+BoardTexture = CloseSpacedDots
+
+# The board's left shadow
+
+BoardLeftShadowColor = Black
+BoardLeftShadowTexture = Solid
+
+# The board's top shadow
+
+BoardTopShadowColor = White
+BoardTopShadowTexture = Solid
+
+# A tile's left shadow.
+
+TileLeftShadowColor = Black
+TileLeftShadowTexture = Solid
+
+# A tile's top shadow.
+
+TileTopShadowColor = White
+TileTopShadowTexture = Solid
+
+# The colour and texture for tile faces.
+
+TileColor = White
+TileTexture = Solid
+
+# The colour and texture for tiles when using the -c option. 
+
+AlternateTileColor = White
+AlternateTileTexture = Solid
+
+# The colour and texture for non-playable squares.
+
+NonPlayableSquareColor = Black
+NonPlayableSquareTexture = Solid
+
+# The colour and texture of the tile rack wall.
+
+RackWallColor = Black
+RackWallTexture = Solid
+
+# The colour and texture of the tile rack base.
+
+RackBaseColor = White
+RackBaseTexture = Solid
+
+# The next few are colours only.
+
+# The colour to print letters on blank tiles.
+
+BlankTileTextColor = Black
+
+# The colour to print letters on other tiles.
+
+NormalTileTextColor = Black
+
+# The colour to use for messages.
+
+MessageTextColor = White
+
+# The colour to use for row and column labels.
+
+LabelColor = White
+
+# Letters used to represent double, triple, ... letter score squares
+# and their colours
+
+LetterMarks = { $1 $2 $3 $4 $5 }
+LetterMarkColors = { White White White White White }
+LetterMarkTextures = { WideSpacedDots CloseSpacedDots }
+
+# Letters used to represent double, triple, ... word score squares
+
+WordMarks = { $6 $7 $8 $9 $0 }
+WordMarkColors = { White White White White White }
+WordMarkTextures = { WideSpacedDots CloseSpacedDots }
+
+
+

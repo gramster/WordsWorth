@@ -1,0 +1,13 @@
+exec rename readme.doc readme.txt
+order.frm
+readme.txt
+thes.dat
+winww.hlp
+winww.ini
+winxw.hlp
+winxw.ini
+wwdemo.dic
+winww16.exe
+winxw16.exe
+
+

@@ -1,0 +1,66 @@
+# The values here are based on the text of the King James Bible
+# Tile count is freq/30000. 
+
+LetterFrequencies = {
+9 # A 
+1 # B 
+2 # C 
+5 # D 
+14 # E 
+3 # F 
+2 # G 
+9 # H 
+6 # I 
+0 # J 
+1 # K 
+4 # L 
+3 # M 
+7 # N 
+8 # O 
+1 # P 
+0 # Q 
+5 # R 
+6 # S 
+10 # T 
+3 # U 
+1 # V 
+2 # W 
+0 # X 
+2 # Y 
+0 # Z 
+2 # Blank
+}
+ 
+# The scores here are based on 2*log(450000/freq) using the
+# original frequencies, not the approximations above.
+
+LetterScores = {
+1   # a
+5   # b
+4   # c
+2   # d
+0   # e
+3   # f
+4   # g
+1   # h
+2   # i
+10  # j
+6   # k
+3   # l
+4   # m
+1   # n
+1   # o
+5   # p
+12  # q
+2   # r
+2   # s
+1   # t
+3   # u
+5   # v
+4   # w
+11  # x
+4   # y
+11  # z
+0   # blank
+}
+ 

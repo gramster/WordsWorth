@@ -1,0 +1,36 @@
+Notes on the new consult algorithm
+
+INPUTS:
+	Pattern (upper case locks letter position)
+	Type (use all letters, use prefixes, use suffixes)
+
+We can then build a constraint vector based on letter position.
+For each position, we associate the set of possible letters.
+We introduce a special letter type to represent a letter drawn
+from a tile pool. All lower case letters are represented by this,
+and placed in the tile pool. Note that this pool itself consists
+of letter sets rather than actual letters.
+
+Try to find a way of generating matches ordered by length (primary
+key) and then alphabetically (secondary key) to prevent duplicates.
+
+Algorithm is much like before. In fact the only differences may be:
+    - use of upper case/lower case rather than `*' to fix position
+    - alphabetic ordering - done by generate(), which should walk the
+	tree looking for matches for V given T
+
+ALG:
+
+  Generate constraint vector V and tile pool T
+  if (prefixes)
+    for each prefix V' of vector V
+        generate(V', T)
+  else if (suffixes)
+    for each suffix V' of vector V
+        generate(V', T)
+  else
+    generate(V, T)
+
+Note that prefixes and suffixes should be identical if all characters
+are moveable.
+

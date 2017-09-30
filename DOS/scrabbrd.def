@@ -1,0 +1,30 @@
+# Number of rows and columns in board
+
+Rows = 15
+Columns = 15
+
+# BOARD SCORING LAYOUT
+#
+# Default board layout. a,b,c are unit, double and triple letter squares
+#			B, C are double and triple word squares
+
+boardPositionScore = {
+	CaabaaaCaaabaaC
+	aBaaacaaacaaaBa
+	aaBaaababaaaBaa
+	baaBaaabaaaBaab
+	aaaaBaaaaaBaaaa
+	acaaacaaacaaaca
+	aabaaababaaabaa
+	CaabaaaBaaabaaC
+	aabaaababaaabaa
+	acaaacaaacaaaca
+	aaaaBaaaaaBaaaa
+	baaBaaabaaaBaab
+	aaBaaababaaaBaa
+	aBaaacaaacaaaBa
+	CaabaaaCaaabaaC
+}
+
+
+

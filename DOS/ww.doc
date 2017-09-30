@@ -1,0 +1,1503 @@
+
+
+
+		     WordsWorth v1.3
+
+	       The `Ultimate' CrossWord Game
+
+			   by
+
+		      Graham Wheeler
+
+
+          (c) 1992-1995  All Rights Reserved
+
+
+
+DISCLAIMER - This software is distributed without a warranty of any sort.
+	You use this software at entirely your own risk. I will not be
+	held responsible for any loss, damage, injury, death, disaster,
+	plagues, famine, divorces, disagreements, etc that may result from
+	the use of this software.
+
+"Scrabble" is a registered trade mark of JW Spear and Sons PLC of England.
+
+		WORDSWORTH USER'S MANUAL
+		========================
+
+Contents
+========
+0. Welcome
+1. Configuration
+2. Game Overview
+3. Command Line Options
+4. Playing the Game
+  4.1    C(onsult)   - Consult the dictionary
+  4.2    H(int)      - Request a hint
+  4.3    U(ndo)      - Undo moves
+  4.4    R(edo)      - Replay undone moves
+  4.5    Q(uit)      - Quit and return to DOS
+  4.6    S(ave)      - Save the current sequence of moves (*)
+  4.7    L(oad)      - Load a saved game (*)
+  4.8    A(cross)    - Play across move;  D(own) - Play down move
+  4.9    P(ass)      - Pass turn, and (optionally) discard some tiles
+  4.10	 X(change)   - Pick up blank tile from board
+  4.11   F1          - Help
+  4.12   N(ext move) - Make program play a different move
+  4.13   W(atch)     - Start or resume autoplay mode
+  4.14   V(iew)      - Toggle opponent tile view on/off
+  4.15   E(xclude)   - Disallow word from play (*)
+
+5. Saved Games
+6. Ending the Game
+7. Using a Mouse
+8. The Board Editor
+9. Known problems with this release
+
+APPENDIX A - Format of Configuration Files
+APPENDIX B - Format of Saved Game Files
+APPENDIX C - Format of the Setup Configuration File
+
+NOTE: Commands marked above with a (*) are disabled in the 
+demo version.
+
+0. Welcome
+----------
+
+Welcome to WordsWorth!
+
+WordsWorth was inspired by an article in Communications of the ACM in
+May 1988, entitled `The World's Fastest Scrabble Program'.  I had
+always been a frustrated Scrabble player. I take ages to move,
+generally play pretty badly anyway, and dislike waiting for my
+opponent. As a result, I decided to write my own program, which would
+have both infinite patience and lightning response time ;-). 
+
+It soon became clear that the principles involved were not bound by
+the rules of Scrabble as such, but more by the concept of crosswords.
+Imposing rules simply implied restricting the set of possible moves.
+The idea of a general-purpose crossword game playing engine was born!
+
+It took a long time to complete (I had a lot of other things to
+do 8-( ), but I think it was worth it. WordsWorth allows you to
+design your own crossword games. If you like Scrabble, you can use
+WordsWorth as a Scrabble opponent (although not with the official
+Scrabble dictionary); or you can be creative, and design your own
+games.
+
+You can create any size and shape board up to a 21x21 square, and
+pepper it with black crossword squares that can't be played upon.
+You can make any square a single, double, triple, quadruple, etc
+letter or word score type, up to 11 times! You can play free-form on
+the board, or be forced to build on to the existing structure (as in
+Scrabble). You can play a territorial game in which you have to build
+on to your own structure. You can specify what letters are available,
+how much they are worth, and give them a strategic `weight'.  You can
+save and restore games, and undo and redo all the moves.  And you can
+control the level and style of your computer opponent.  The
+possibilities are immense. Now it is up to you!
+
+Please send your comments, bug reports, flames, and anything else to
+gram@aztec.co.za. I have tried to make WordsWorth as generic and
+general as possible; if you have suggestions, particularly about
+further generalisation, let me know! I am also interested in hearing
+about erroneous words or omissions in the dictionaries.
+
+If you have word lists in other languages that you would like
+made into WordsWorth dictionaries, send them to me and I will
+do it for you (e-mail only please).
+
+DISCLAIMER - This software is distributed without a warranty of any
+sort. You use this software at entirely your own risk. I will not be
+responsible for any loss, damage, injury, death, disaster, plagues,
+famine, war, divorces, disagreements, etc that may result from the
+use of this software.
+
+The last public release of WordsWorth before this was v1.2.1.
+This version:
+
+	* discards tiles with positive weights (previously I
+		had this the wrong way around)
+	* adds the board/rack editing facility (-E command line
+		option)
+	* has new big dictionary of approx 120,000 words.
+
+
+1. Configuration
+----------------
+
+If you are new to WordsWorth, you should skip this section, and run
+the included SETUP.EXE program to create a configuration file. The
+SETUP program will ask you a number of questions about, amongst other
+things, your video hardware, what board layout you require, and so
+on, and then write a suitable configuration file to disk. If you have
+used much computer software before you should have no difficulty using
+SETUP; it can be driven by the mouse or by the keyboard; in the latter
+case you mostly just need to use the TAB key (to move between options),
+the SPACE key (to toggle an option) and the ENTER key (to accept an 
+option setting and continue to next screen). You can then run WordsWorth 
+(WW.EXE) directly. When you want to explore the possibilities of 
+WordsWorth further, or maintain multiple configurations, you should 
+read this section.
+
+WordsWorth is highly configurable. At this stage you need to be able
+to use a text editor to change the configuration, as it is stored in
+plain text files. WordsWorth includes several example `configuration
+definition files' which can be combined together into configuration
+files using the supplied SETUP program. However, you will probably
+want to learn how to create your own configuration definitions at 
+some stage.
+
+The configuration elements have names which are mostly
+self-explanatory. A comment begins with a`#' character; everything
+from that character to the end of the line is ignored. Whitespace in
+the file is also ignored; this is why the mask tiles, draw tiles, and
+score have to be separated by special field delimeter characters in
+the saved game files. Things that can be changed include the size and
+layout of the board, bonus scores, number, distribution and score of
+tiles, and so on. The various configuration entries are described in
+Appendix A. The SETUP program itself can also be reconfigured, as it
+is driven by entries in a file named SETUP.CFG. The layout of this
+file is described in Appendix C. You can modify the SETUP.CFG file to
+suit your own requirements.
+
+Normally, WordsWorth reads the configuration from the file "ww.cfg",
+which is the file created by the SETUP program. You can override this
+choice on the command line, and create different sets of
+configurations in different files. By using configuration definition
+files, the size of the top-level configuration files can be kept
+small, as common sets of entries can be `factored out'. The various
+configuration files distributed with WordsWorth are a good example.
+In fact you should probably not tamper directly with the configuration
+files until you are satisfied that you understand the existing files.
+
+The order of entries in the configuration is not important, except
+that the number of rows and columns in the board must be specified
+before the constraints on the first move and the specification of the
+board layout.
+
+You can include configuration definition files in a top-level 
+configuration file by using lines of the form:
+
+	Include = myfile
+
+where `myfile' is the name of the configuration definition file to
+include. WordsWorth will immediately read the specified file, and
+then resume reading the top level file. Note that only one level of
+nesting is allowed; `Include' files cannot themselves include other
+files. 
+
+The unregistered version of WordsWorth is provided with only a subset
+of the dictionary, containing about 28,000 short words.  The full
+dictionary contains over 117,000 words. In addition, the registered
+version of WordsWorth includes a medium 80,000 word dictionary,
+and a utility to specify a list of words that are to be excluded 
+from the dictionary. The `buildict.exe' program reads a SORTED list 
+of words all in UPPER CASE, and produces a dictionary from them. To 
+exclude the words in this list from play, the dictionary file should 
+be named `WORDS.NO'. For example, if the word list is in the file 
+`WORDS.EX', you can do this with: 
+
+	BUILDICT -O WORDS.NO WORDS.EX
+
+There is a batch file, `REBUILD.BAT', that will sort the words in
+`WORDS.EX' and then run `BUILDICT' on them. See section 4.15 for more
+about excluding words from play.
+
+The ability to exclude words from the dictionary that WordsWorth can
+play allows you to overcome imperfections that you may discover in
+the dictionary. I am always interested to hear of invalid words,
+as I update the dictionary regularly.
+
+WordsWorth is shipped with the following conguration definition 
+files:
+
+Name		Description
+-----------------------------------------------------------------
+herc.def	Definitions for Herc/Mono display adaptor
+ega.def		Definitions for EGA color display adaptor
+vga.def		Definitions for VGA color display adaptor
+svga.def	Definitions for Super VGA color display adaptor
+
+color.def	Color/texture definitions for color systems
+mono.def	Color/texture definitions for mono systems
+
+diamond.def	Diamond shaped board
+grid.def	Grid shaped board
+scrabbrd.def	Scrabble board
+board21.def	21x21 square board
+board7.def	7x7 baby square board
+
+alice.def	Letter frequencies/scores based on `Alice in Wonderland'
+cia.def		Letter frequencies/scores based on `CIA Fact File'
+bible.def	Letter frequencies/scores based on King James Bible
+jargon.def	Letter frequencies/scores based on the Jargon File
+scrabtil.def	Letter frequencies/scores based on Scrabble
+
+level.def	Supplementary definitions for game rules
+-----------------------------------------------------------------
+MAKE SURE YOU HAVE BACKUPS OF YOUR CONFIGURATION FILES BEFORE CHANGING THEM!
+
+
+2. Game Overview
+----------------
+
+The rules of the game are quite straightforward. They are described
+in their loosest form here, as they vary somewhat depending on the
+configuration. The scoring method is explained in stages in the
+following sections.
+
+2.1 The Objective
+
+The basic aim is to make words in a crossword-like fashion from a set
+of letter tiles which you draw out of a common pool. You alternate
+plays with the program, and when the pool is exhausted and one player
+has no more tiles, or both players are stuck, the game ends. You
+score according to the word you make, as well as other new words that
+may result from your play. For example, if the board contains:
+
+    DOG
+
+and you play the word STOP thus:
+
+    DOGS
+       T
+       O
+       P
+
+you get score for both DOGS and STOP. On the other hand, you *must*
+make valid words with your play, so
+
+        S
+    DOGST
+	O
+        P
+
+is not a valid way to play the word STOP, as DOGST is invalid.
+
+Hyphenated words and proper nouns (capitalised words) are not
+allowed.
+
+At the end of the game, the scores are compared to see who wins.  The
+scores are calculated according to the location of the word (that is,
+what special squares did it cover), and the letters played, each
+different letter having a different score value.  If either or both
+players still hold unplayed tiles, the score of those tiles is
+deducted to reach a final score.
+
+Usually, you must build on to the existing words on the board (the
+exception being the first move, of course). WordsWorth offers a lot
+of flexibility in these matters, however.
+
+
+2.2 The Board
+
+Play takes place on a board which can be any size that will fit
+within a 21x21 square area. If you want a rectangular board you
+specify the dimensions; if you want some other shape board you 
+specify the size of a rectangle that can contain it, and use black
+squares to create the shape you desire. See for example the
+`grid.def' and `diamond.def' configuration definition files.
+
+Apart from black squares, the scoring of plays is affected by the
+type of the squares on which the play takes place. Thus, a square may
+be labelled as a `double letter', `triple letter', `4 x letter', and
+so on, and similarly for `double word', etc. If your move results in
+one or more of these types of squares being covered, you take this
+into account when working out the score for the move.  Squares that
+affect letter scores are taken into account first. Thus, if you play
+a two-letter word in which one letter has score 1, and the other
+score 4, and the first letter is played on a double word square while
+the second is played on a triple letter square, then the score for
+that word is 2 * (3 * 4 + 1) = 26. Note that this is just for that
+word; the score for that move will usually involve score for one or
+more other words as well. Once a square is covered with a tile,
+however, its type ceases to have any effect on scores; thus, only
+when you actually place a tile on such a square does its type have an
+effect on the score.
+
+
+2.3 The Tile Pool
+
+Each player draws tiles out of a common pool. Usually this is fixed
+in size, and each player draws a fixed number of tiles randomly from
+the pool at the start of each game, replenishing their tile rack at
+the end of each move. In Scrabble, for example, each player holds
+seven tiles at a time.
+
+WordsWorth also allows you to play any tile from the pool without
+drawing a small set of tiles each move. The pool can also be
+infinitely large, allowing you to play any letter you like at any
+time, until both players get stuck anyway.
+
+
+2.4 Making a Move
+
+The basic idea behind making moves was described earlier. There are
+also some other types of moves. For example, if you cannot make a
+good word, you can pass your turn. If you do so, you have the option
+of returning any or all of your current tiles to the pool, and
+drawing replacements (assuming you are drawing tiles, and not playing
+freely from the pool as described in the previous section).
+
+There is a special tile that plays a similar role to a joker in
+cards. This tile is blank, and can be used to represent any
+character. If you have such a tile and play it, you must state what
+character it is representing. In WordsWorth, this tile is represented
+by the letter it symbolises in lower case, or by `_' if it has no
+symbolic counterpart. For example, if you play the word STOP but use
+a blank tile to represent the O, then you would enter this as SToP.
+On the other hand, if you were passing your turn and discarded a
+blank, you would enter it as `_', as it does not represent any
+particular character (other than itself) when being discarded. 
+
+WordsWorth optionally allows either player to pick up a blank tile
+from the board if the letter it symbolises is placed in its place by
+that player. Thus, if you played `SToP', and the program held an `O'
+tile, it could exchange its `O' for the blank. This may constitute a
+full move on its own, a part of a pass move, or simply something that
+can be done at the start of any move; you specify whether you want
+these moves to be allowed at all, and if so, when.
+
+The first move may optionally have some constraints placed on how it
+should be played. For example, it could be specified that the word
+must be played in the third row, or that it must cross the center
+square, or that it may be played anywhere at all.
+
+As mentioned earlier, usually each move other than the first move
+must build on to the existing words like a crossword. Other
+possibilities are territorial play (where each player builds on their
+own words), and free-form play, in which play may occur anywhere. In
+the former case, attachment to the opponents words is allowed, but
+every play must include a word with a previously-placed letter that
+was placed by the same player. Each player may play their first move
+anywhere in this case (although the first player may have additional
+constraints, such as playing through the center).
+
+
+3. Command Line Options
+-----------------------
+
+Version 1.2.2 has the following command line syntax:
+
+ww [-R] [-D] [-B0|-B1] [-s|-S[#]|-Q[#]] [-M] [-c] [-f <config>] [-E|<game>]
+
+Running WordsWorth with a -H argument prints out a short help message.
+
+The -s, -S and -Q options are for advanced use only. The meanings of
+the various options are:
+
+-R creates the file REGISTER.DOC with details about registering.
+
+-D shows you the computer's tiles (only on boards in which at least
+	one edge has length 15 or more).
+
+-B0 makes the program play the first move, while -B1 lets you
+	play first. Otherwise the choice as to who starts is
+	random.
+
+-s, -S and -Q are used for testing the performance of a particular
+	configuration of the move selection algorithm. There are a
+	number of factors that affect how the program chooses its
+	move that can be modified within the configuration file. When
+	one of the command line arguments is given, the program plays
+	against itself, with the `player' taking your part being a
+	control which chooses its moves based on score only.
+	You can thus evaluate your play configuration.
+
+	-S and -s show you the game as it is played. The -S option
+	is faster, and exits automatically at the end of the game.
+	The -s option waits for you to press a key between each move.
+
+	You can return to normal play from a -S or -s game by pressing
+	a key other than the ENTER key. You can enter or resume autoplay
+	by selecting the `W' move option.
+
+	The -Q is the fastest and does not actually display the games,
+	just the end result. Both -S and -Q can take a numeric argument,
+	which is the number of games to play.
+
+-c colours tiles you place on the board in a different colour to
+	those placed by the program.
+
+-f allows you to load up a config file by name, rather than the default
+	"ww.cfg" file.
+
+-M disables the mouse support. I don't think this is needed,
+	but use it if you find the screen flickering and WordsWorth
+	behaving strangely. This might happen if WordsWorth erroneously
+	detects a mouse when none is present.
+
+-E allows you to enter the board editor at the start of the game.
+	See section 8 for more details.
+
+The <game> file allows you to proceed straight into a saved game,
+rather than starting a new game. See section 5 for more details.
+
+
+4. Playing the Game
+-------------------
+
+When the game begins, WordsWorth uses a random number to decide who
+plays first. If it is to play first, it will make a move quite
+quickly.  Either way, it will then be your turn to play. You can
+override the random choice of first player with the -B0 and -B1
+command line options.
+
+Your tiles will be shown at the bottom of the screen. If you have a
+blank tile, it will be displayed as `_'.
+
+When it is your move, you have numerous options, selected by pressing
+the first letter of the option. We describe each in turn:
+
+
+4.1    C(onsult) - Consult the dictionary.
+==========================================
+
+This command lets you generate lists of anagrams and words, given a
+set of letters. The set of letters you specify can include blank
+tiles, as well as things like `any vowel' or `any non-vowel'.
+
+There are a number of possibilities that you can specify. WordsWorth
+will ask you whether you want the letters to be used in the order
+given, or whether you want anagrams of the letters as well - you
+specify `A' or `O'. Then you will be asked whether all the letters
+must be used (that is, if you specified six letters only six-letter
+words would be listed), or whether you are interested in words of any
+length in which case WordsWorth will use all combinations of choices
+out of those letters.  Specify `A' for `must play all tiles', or `S'
+for `must play some tiles'.  If you specify `S' for some and you
+haven't requested anagrams, you will be asked whether the subsets
+must be prefixes (enter `F' for front) or suffixes (enter `B' for
+back) of the pattern as a whole.
+
+You will then be asked for a pattern. WordsWorth will list all words 
+that match the pattern (or match rearrangements of the pattern, in
+the case of anagrams). Use `_' or `?' for a blank tile. You can also
+specify a range of letters enclosed within square brackets, such as
+`[A-Z]' (equivalent to `_'), `[AEIOU]' (any one vowel) or `[A-MZ]'
+(any one of A through M, or Z). To specify the opposite of a range,
+start the range with an exclamation mark. For example, [!AEIOU]
+matches any non-vowel. If a particular letter (or letter range)
+*MUST* be in the listed words, precede it with a `*'.
+
+Examples:
+
+	C A A DIVIDE_ will find all seven letter words that can be made
+			with the tiles DDEIIV and blank.
+
+	C O A DIVIDE_ will find all seven letter words that start 
+			with the six letters `DIVIDE'.
+
+	C O A DIVIDE will just list DIVIDE.
+
+	C A A DIVIDE will list all anagrams of the word `divide'.
+
+	C A S DIVIDE will list all words of up to seven letters
+		that can be made from the letters DDEIIV.
+
+	C A A AB_ will list all three-letter words containing an `A' and `B'.
+
+	C O A ?[MN]? will list all three-letter words with an 
+		M or N in the center position.
+
+	C A A [A-C][D-F]G will list all three-letter words containing
+		a G, one of A,B, or C, and one of D, E or F.
+
+	C O A [A-C][D-F]G will list all three-letter words that begin
+		with an A, B or C, have a D, E or F in the middle,
+		and end with a G.
+
+	C A S ABJEIPN*[BHOS] will list all words that can be made out
+		of the seven letters ABJEIPN plus one of B,H, O or S.
+		At least one B, H, O or S must be used.
+
+	C A A ???*X will list all words of up to four letters that
+		contain an X.
+
+	C A S [!AEIOU][!AEIOU][!AEIOU][!AEIOU][!AEIOU]*[AEIOU]*[AEIOU]
+		will list all words of up to seven letters that contain
+		exactly two vowels.
+
+	C O S F CAT???????????? will list all words that start with
+		CAT
+
+	C O S B ???????????TION will list all words that end with TION
+
+The pattern can be up to 79 characters in length.
+
+WordsWorth displays up to 7 words at a time, and then waits for you 
+to press a key, before displaying the next eight. If you want to 
+return to the menu before the matching process is finished, press the
+ESC key at any point during matching.
+
+If you request anagrams of a large number of letters, WordsWorth may
+search for a while without producing any output. You must either be
+patient, or press ESC and do a simpler consultation.
+
+
+4.2    H(int) - Request a hint.
+===============================
+
+WordsWorth will display a move you could make in this situation.
+Unless WordsWorth recommends discarding tiles, you will be asked if
+you want to play the suggested move. Press `y' or `Y' to do so; press
+`h' or `H' to see another hint, or press any other key to take you
+back to the list of choices.
+
+You can modify the `ControlStrategy' configuration element to change
+the way in which WordsWorth chooses hints.
+
+
+4.3    U(ndo) - Undo moves.
+===========================
+
+WordsWorth will undo the last two moves made, if possible. As you are
+being prompted for your move, this means the move the it just made,
+and your move that preceded it.
+
+
+4.4    R(edo) - Replay undone moves.
+====================================
+
+WordsWorth will replay two undone moves, if there are such moves.
+Note that if you undo all the way in a game in which WordsWorth plays
+first, or you or WordsWorth play some new moves after a series of
+Undo's, the Redo information is lost as it is no longer applicable to
+the state of the game.
+
+
+4.5    Q(uit) - Quit and return to DOS.
+========================================
+
+You will be asked for confirmation, as well as given a chance to 
+save the game in progress.
+
+
+4.6    S(ave) - Save the current sequence of moves. 
+===================================================
+
+You will be asked for a file name to be used for the saved game. 
+Enter the name and press ENTER.
+
+The format of saved games is described in Appendix B, for those
+with an interest in such matters.
+
+
+4.7    L(oad) - Load a saved game.
+==================================
+
+You will be asked for the name of the saved game file to load.
+Enter the name and press ENTER.
+
+Note - it is your responsibility to ensure that the current
+configuration of WordsWorth is compatible with the one in use when
+the game was saved. WordsWorth will follow the instructions in the
+saved game literally even if they no longer make sense (because the
+board layout has been changed, for example).
+
+
+4.8    A(cross) - Play across move;  D(own) - Play down move.
+=============================================================
+
+Both of these are similar, and are described together.
+
+If you have already played an exchange this turn (see 4.10), and
+`ExchangeAllowed' is not 4, you will get a message saying "You must
+pass!".  
+
+Otherwise, you will be asked for the row in which the first letter of
+your word falls (*not* the first letter which you are *playing*, just
+the first letter, which may already be on the board). You should
+enter a letter corresponding to the row (there are labels on the left
+of the board for rows, and along the top for columns). You will then
+be asked for the column. In each case, just press the key (the only
+time it is necessary to press ENTER is for multiple-letter input,
+such as words, tiles to discard, and file names).
+
+You will then be asked for the word. Type the word and press ENTER.
+If your word contains blank tiles, you must type the letters they
+represent, IN LOWER CASE. All other letter should be typed in UPPER
+CASE. For example, if you are playing the word `hello', and you are
+using a blank for the `h', you enter `hELLO'.
+
+WordsWorth will then validate your move. If the word is not found in
+the dictionary, you will be asked if you want it accepted anyway.
+There are a number of other checks that will be performed. If any of
+them fail, an error message will be displayed. The possible errors
+are:
+
+	1st word must cross row <n>
+	1st word must cross col <n>
+
+		You are playing the first word on the board
+		and you have to play it according to constraints
+		which you have violated. These constraints are
+		specified in the configuration file.
+
+	Word has no anchor square!
+
+		The word does not attach to the existing
+		word structure on the board. You must build
+		on to what is already there (but see below).
+ 
+	Word conflicts with board!
+
+		You entered a word which contains a letter
+		which conflicts with a letter already on the
+		board.
+
+	You don't have a blank!
+
+		The word you entered requires that you have
+		a blank tile, which you don't.
+
+	You don't have a <char>
+
+		The word you entered requires that you have
+		a <char> tile, which you don't.
+	
+	Bad Xword
+
+		The word you entered does not form all 
+		valid cross words.
+
+	Can't start there!
+
+		The word you entered must have its first
+		letter preceded by an empty square or the
+		edge of the board, not another letter.
+
+	Can't end there!
+
+		The word you entered must have its last
+		letter followed by an empty square or the
+		edge of the board, not another letter.
+
+If one of these errors occurs, you will simply be asked to enter your
+move again. You will be given the option of overriding WordsWorth's
+dictionary lookups of the main word and any cross words, in case you
+wish to play a move that is not in the dictionary.
+
+IF YOU MAKE MISTAKES:
+	* in entering the word, you can use the backspace
+		key to make corrections before pressing
+		ENTER
+	* press the ESC key once to clear the current line
+		and twice to cancel the current operation
+		and return to the menu.
+
+Note that every word played must include at least one anchor square,
+but the definition of what constitutes an anchor square varies. The
+default is that it is any empty square with at least one non-empty
+neighbour. If you select free form play (see Appendix), all empty
+squares are anchors (except possibly on the first move). If you
+select territorial play, the usual definition applies except that
+only neighbouring tiles played by the same player are examined.
+
+
+4.9    P(ass) - Pass turn, and (optionally) discard some tiles.
+===============================================================
+
+You will be asked which tiles to discard. Enter the list in any 
+order. All letters must be entered in upper case, and if you discard
+a blank (although its a rare occasion) you must enter `_'. WordsWorth
+will validate your input. If you have all the tiles specified, they
+will be returned to the pool and a new set will be drawn. Otherwise
+you will be asked to enter your move again.
+
+
+4.10	X(change) - Pick up blank tile from board.
+==================================================
+
+This option lets you pick up a blank from the board if you hold the
+letter it represents, which you use to replace it. There are a number
+of options, which are selected by the ExchangeAllowed configuration
+variable. The possible selections are:
+
+ExchangeAllowed = 0	# No exchange moves are allowed (in which case
+			# the X option does not appear on the menu)
+ExchangeAlowed = 1	# an exchange constitutes an entire move
+ExchangeAlowed = 2	# an exchange can be followed by a tile exchange
+			# with the pool, but not with a word play
+ExchangeAlowed = 3	# an exchange can be done before any move.
+
+Exchanges don't have any score associated with them.
+
+
+4.11	F1 - Get help.
+======================
+
+Pressing F1 at any time will display some help
+about what input WordsWorth is currently expecting
+from you.
+
+4.12   N(ext move) - Make program play a different move.
+========================================================
+
+As with hints, the program stores up to twenty moves when it decides
+what to play. If you don't like the move it made (maybe it took a
+triple word score?!) you can force it to play differently.  Unlike
+hints, which are shown to you in order of score, the program's moves
+are ordered by weight.
+
+4.13	W(atch) - Start or resume autoplay mode.
+================================================
+
+Selecting this option tells the program to start playing for you.
+You can interrupt autoplay by pressing any key other than ENTER.
+
+4.14	V(iew) - Toggle opponent tile view on/off.
+==================================================
+
+Pressing `V' toggles the display of the opponent's tiles on and off.
+
+4.15	E(xclude) - Disallow word from play.
+============================================
+
+If you press `E' you will be asked for a word to exclude from play.
+The default is the last word played by the computer.  The word will
+be added to a list of up to 16 words within WW, as well as being
+appended to a file called WORDS.EX. If you run the `REBUILD.BAT'
+batch file, it will convert this WORDS.EX list into a WORDS.NO
+dictionary. This dictionary has the capacity for about 100-200 words,
+depending on length.
+
+To summarise - you use the `E' command to exclude a word that isn't
+already in your `WORDS.NO' dictionary. After quitting WordsWorth, if
+you have used the `E' command, you should run `REBUILD' to update the
+`WORDS.NO' file. You can also add new words yourself to the
+`WORDS.EX' file, and then run `REBUILD'.
+
+After using this command, WW will do an undo, as it assumes that
+the `E' was due to its last move.
+
+5) Saved Games
+--------------
+
+WordsWorth allows games to be saved and loaded. Games are saved
+in plain text form, with comments, so they are quite readable.
+
+It is possible to have a board which has letters placed on it before
+you even begin playing. One application of this feature would be to
+set up a partially completed crossword puzzle and get WordsWorth to
+find possible completions (note - the XWORD program is much better
+at this!)
+
+When you load a game, it will be played through to the point at which
+it was saved, after which you can continue. The undo command can also
+be used to go back to an earlier point.
+
+The format of saved games is described in Appendix B. Note that it
+is up to you to ensure that the game you load is compatible with the
+current configuration. The results otherwise will be unpredictable at
+best.
+
+6) Ending the Game
+-------------------
+
+When both players are stuck, or the tiles are all played,
+WordsWorth exits and prints out the end score. You can also exit by 
+entering `q' at the move prompt. WordsWorth will clean up the screen
+and print out a summary of the games results at the time of exit.
+
+7) Using a Mouse
+----------------
+
+WordsWorth now offers basic mouse support. Instead of typing in 
+commands you can click with the left mouse button on the 
+appropriate prompt. For example, to play an across move, click
+on the prompt "A(cross)".
+
+You cannot use only the mouse. In particular, you will have to
+use the keyboard for:
+
+* confirming that you want to quit
+* entering ESC, backspace and punctuation in Consults
+* entering `y' or `n' for dictionary overrides.
+
+When you are required to enter a board position (for 
+Down/Across moves), you can move the mouse cursor to the
+position on the board where the word you are playing starts,
+and double click (once for the row, once for the column).
+
+When you are required to enter words, you can click the 
+mouse on letters that are in your tile rack or on the 
+board (the same process can be used for entering words
+in dictionary consultations, and so on).
+
+Clicking the right mouse button is equivalent to pressing
+ENTER. Thus, for example, to enter a down move, you would:
+
+* click on "D(own)"
+* click twice on the board position at which the move starts
+* click on the letters (on the board and in your tile rack)
+	making up the word, in order
+* click the right mouse button
+
+Personally, I prefer using the keyboard. I find the mouse support
+mostly useful as a way of entering the board location of the
+start of a word, instead of having to enter the row and
+column labels.
+
+Note that the mouse does not work in SuperVGA modes. I haven't
+looked into why this is so; I am using DOS mouse services so I
+suspect the problem is either a DOS one or a Borland BGI one.
+
+8) The Board Editor.
+--------------------
+
+If you start WordsWorth with a -E command line argument, the
+at the start of each new game you will first be put in `board
+edit mode'. This allows you to alter the tiles on the board and
+in the players racks before the game starts (useful for experimenting
+with Scrabble puzzles, for example).
+
+The use of the editor should be quite self explanatory once you
+are familiar with normal play. You can enter strings of letters
+to be placed down or across in the same way as normal across and
+down moves are entered. Two new menu items are included: Human
+and Computer. These allow you to edit the player's tile racks.
+You can simply type in the new set of letters.
+
+Note that when editing, WordsWorth retains the same tile pool.
+If you enter a string of letters to be placed on the board, any
+tiles already in place that are to be replaced will first be
+returned to the pool, before the new letters are placed. During
+the latter process, any letter in the string that would be placed
+on a black (non-playable) square is skipped, as are any letters
+which are not in the tile pool. Similar considerations apply to
+the tile racks - existing tiles are first returned to the pool,
+and then the new letters are drawn from the pool. If there are
+no available letters of a particular type, that letter is skipped.
+You should ensure that the number of tiles in the racks is correct
+before saving the layout, or WordsWorth will fail to restore the
+saved layout later.
+
+When done editing, select Q for quit to begin the actual play (at
+which point you can save the board/rack layout as a normal game
+with preplaced pieces if you have the registered version).
+
+Editing cannot be used to modify restored saved games; this is
+because the saved game *does* store the initial layout but cannot
+presently store editing changes made after the first move. Thus
+if you specify a game file on the command line, or load one up
+from within WordsWorth, edit mode will not be entered.
+
+9) Known problems with this release
+----------------------------------
+
+* When undoing moves, the owner attribute is not undone. That is,
+	if an exchange move is done in which one player picks up
+	a blank played by the other, and this move is then undone.
+	the program continues to regard the original tile as being
+	played by the player who picked it up, not the original player.
+	This affects the display when each player's tiles are
+	displayed in a different colour, and territorial play.
+
+* The game record/load/save/undo/redo logic and data structures
+	are overly complex and should be redesigned at some stage.
+
+
+ENJOY PLAYING WORDSWORTH!
+
+=================================================================
+
+APPENDIX A - FORMAT OF WORDSWORTH CONFIGURATION FILES
+-----------------------------------------------------
+
+WordsWorth has a basic default configuration, but you will almost
+certainly want to override this by using configuration files, a
+complete example of which is included in the package.
+
+The configuration files contain a number of lines of the form
+
+<configuration element name> = <some value>
+
+The value may be a string, a character, a natural number, or an
+integer, depending on the element. In some cases, tables of values
+are expected; these should be delimeted by curly braces `{' and `}'.
+Comments can be freely used; the `#' character indicates the start of
+a comment. Everything following the `#' until the end of that line is
+treated as a comment and ignored.  At present, the syntax analyser
+that WW uses to read the config files is a bit brain dead; you may
+find you need to use spaces to seperate things from one another. For
+example, any non-digit immediately following a number is discarded,
+so if you have something like:
+
+	Rows=7# the number of rows
+
+WordsWorth will complain, as the `#' is discarded and so the text
+`the number of rows' will not be treated as a comment. I'll fix this
+at some stage.
+
+Apart from the `#' character, other special characters include `{',
+`}' and `$'. If you want to specify one of these characters literally
+without the special meaning, you should precede it with a backslash.
+Thus, for example, \# represents the # character rather than the
+start of a comment.
+
+The `$' character allows you to enter an ASCII value directly, but
+currently only supports single digit numbers. Thus, `$2' is the ASCII
+2 character. These are currently only of use for accessing 10 special
+characters in the font (in positions 1 through 10, the latter being
+signified by `$0'). See the WordMarks and LetterMarks configuration
+element and note (15) in the appendix for details.
+
+Whitespace (such as spaces, newlines, and tabs) is ignored, except in
+strings (such as the name of the dictionary).
+
+A special configuration element, `Include', allows you to include
+other files within a configuration file. Only one level of nesting is
+allowed; that is, the main or top-level configuration file may
+`Include' other files, but the included files may not themselves 
+include further files. In the WordsWorth distribution, this has been
+used to structure the configuration into a number of different 
+`definition' files (each with a .def extension) which are included by
+the main configuration file. This main file is created by the `setup'
+program, which asks the user questions about the configuration and
+then creates the appropriate `Include' lines.
+
+The different configuration elements are now described, and their
+default values given. The following characters are used to represent
+types:
+
+S - string
+C - character
+N - natural number
+Z - integer
+H - Colour or Hue
+T - Texture
+{n} - table of type n (e.g. {C} is a table of characters)
+
+The valid colour names are:
+
+	Black			
+	Blue			
+	Green			
+	Cyan			
+	Red			
+	Magenta		
+	Brown			
+	LightGray		
+	DarkGray 		
+	LightBlue		
+	LightGreen		
+	LightCyan
+	LightRed
+	LightMagenta
+	Yellow
+	White
+
+The valid texture names are:
+
+	Solid
+	Line
+	ThinSlash
+	ThickSlash
+	ThickBackslash
+	ThinBackslash
+	ThinHatch 
+	ThickHatch 
+	InterleavingLine 
+	WideSpacedDots 
+	CloseSpacedDots 
+
+On an EGA/VGA screen, you would usually make all textures solid fill
+and just use colours. On a mono screen, you would make use of
+textures over colours.
+
+DISPLAY CONFIGURATION ELEMENTS
+
+Name			Default	Type 	Comments
+========================================================================
+LetterMarks			 {C}	Letter used to represent double,
+						triple, etc, letter score
+						squares. Up to 10 are allowed.
+						See note (15).
+LetterMarkColors		 {H}	Colours used to draw the double,
+						triple, etc, letter score
+						square marks (up to 10).
+LetterMarkBColors		 {H}	Colours used for the background
+						of these squares (up to 10).
+LetterMarkBTextures		 {T}	Fill styles used for the background
+						of these squares (up to 10).
+
+WordMarks			 {C}	Letter used to represent double,
+						triple, etc, word score
+						squares. Up to 10 are allowed.
+						See note (15).
+WordMarkColors		 	 {H}	Colours used to draw the double,
+						triple, etc, word score
+						squares. Up to 10 are allowed.
+						word score squares
+WordMarkBColors			 {H}	Colours used for the background
+						of these squares (up to 10).
+WordMarkBTextures		 {T}	Fill styles used for the background
+						of these squares (up to 10).
+
+BoardColor		Cyan	  H	Color of board squares
+BoardTexture	  CloseSpacedDots T	Fill style of board squares
+BoardLeftShadowColor	DarkGray  H
+BoardLeftShadowTexture	Solid	  T
+BoardTopShadowColor	LightGray H
+BoardTopShadowTexture	Solid	  T
+TileLeftShadowColor	DarkGray  H
+TileLeftShadowTexture	Solid	  T
+TileTopShadowColor	LightGray H
+TileTopShadowTexture	Solid	  T
+TileColor		White	  H
+TileTexture		Solid	  T
+AlternateTileColor	LightBlue H	Used when ww -c is specified
+AlternateTileTexture	Solid	  T
+NonPlayableSquareColor	Black	  H
+NonPlayableSquareTexture Solid	  T
+RackWallColor		Blue	  H
+RackWallTexture	  CloseSpacedDots T
+RackBaseColor	       LightBlue  H
+RackBaseTexture	   WideSpacedDots T
+BlankTileTextColor	Red	  H
+NormalTileTextColor	Black	  H
+MessageTextColor	White	  H
+LabelColor		LightGray H
+
+
+
+LEVEL AND STRATEGY CONTROL
+
+Name			Default	Type 	Comments
+========================================================================
+LengthWeight		2	  Z	Weighting factor for long words (2).
+MininumAllowedScore	0	  N	Force WW to ignore moves with lower
+						score than this.
+MaximumAllowedScore	0	  N	Force WW to ignore moves with
+						higher score than this (3).
+RestrictedSearchMin	0	  N	See notes (3) & (4).
+RestrictedSearchCount	0	  N	See notes (3) & (4).
+MinimumWordLength	0	  N	Force WW to ignore moves shorter
+						than this.
+MaximumWordLength	21	  N 	Forces WW to ignore moves longer
+						than this.
+ControlStrategy		0	  N	0 means control should maximise
+						score (7).
+IncludeCrossWeights	0	  N 	0 means only take into account
+						weight on the main word (8).
+AdaptiveStrategy	1	  N	0 means don't use adaptive play (9).
+BlankThreshold		20	  N	The program will only consider
+						playing a blank tile for
+						words with at least this
+						weight.
+PenaliseSquares         0         N     If non-zero, try to avoid opening
+                                                up double/triple/... word
+                                                squares for the opponent.
+					The value is used as a divisor,
+						so `1' is the strongest
+						penalty, `2' half that, etc
+UseLetterWeights	1         N     Non-zero implies letter weights
+						influence the choice of word
+MaxNewCrossWords	0	  N	See note (17)
+
+	
+
+
+GAME CONFIGURATION
+
+Name			Default	Type 	Comments
+========================================================================
+VideoCard	    Autodetect	  S	See note (14).
+VideoMode			  N	See note (14).
+Dictionary		ww.dic	  S	Name of the dictionary file
+		or wwdict.dem in demo version
+Rows			13        N	Number of rows in the board	
+Columns			13	  N  	Number of columns in the board	
+NumberOfTiles		6	  N	Number of tiles per player. See	(1).
+PlayAllTileBonusPoints 	0 	  N	Bonus score for playing all tiles
+BoardPositionScore		 {C}	See note (5).
+FirstMoveRow		8	  N	Row through which first move
+						must pass (6).
+FirstMoveCol		8	  N 	Column through which first move
+						must pass (6).
+FirstMoveDir		0	  N	How the first move must be played.
+						0 - any, 1 - down, 2- across.
+FreeForm		0	  N	How other moves must be played.
+						0 => must anchor on existing
+							words
+						1 => must anchor on own words
+					      other => can anchor on any
+							empty square
+LetterFrequencies		 {N}	Number of each letter type in 
+						the pool (10).
+LetterScores			 {N}	The score associated with each
+						type of letter (11).
+LetterWeights			 {N}	The weights associated with each
+						type of letter (12).
+ExchangeAllowed		0	  N	If this is non-zero, you can
+						pick up a blank from
+						the board if you hold
+						the letter it represents.
+						See section 4.10 and (13).
+HotSquares		0	  N	If this is non-zero, double/triple/etc
+						letter/word squares remain
+						active even when covered.
+						See note (16).
+
+
+
+NOTES:
+
+(1) If this is zero, you can play whatever letters you like (there is
+	no limit on the number of letters; the game ends when you
+	are stuck).
+    If this is one, you can play any letters from the common pool.
+	That is, the pool specifies the total set of letters than
+	can be played, but otherwise this is like zero.
+    Greater values represent the number of tiles you draw at the start
+	of the game.
+
+(2) If this is zero, it has no effect. If it is 1 or 2, a balance is
+	struck between score and length, and if this is 3 or more,
+	WW favours long words in almost every case, even if the
+	score is less.
+
+(3) A zero value for either means ignore this factor.
+
+(4) As it searches, WW counts the number of moves it finds that have
+	a score of at least <RestrictedSearchMin>. Once it has found
+	<RestrictedSearchCount> of these, it plays the best move it has
+	found thus far. This gives a lot of control over its play, but
+	it's quite difficult to predict the exact effect.
+
+	Values of 5 and 40 respectively tends to cut WW's score
+	to about 40% of the maximum.
+
+(5) This is the board layout for scores. a, b, and c respresent unit,
+	double, and triple letter squares respectively, while B and C
+	respresent double and triple word squares.
+
+    WordsWorth also allows you to specify non-playable squares (something
+	like the black squares on a crossword puzzle), using the character
+	@.
+
+    An example board layout specification is:
+
+	boardPositionScore = {
+		BaaacaaacaaaB
+		a@aaababaaa@a
+		aa@aaabaaa@aa
+		aaa@aaaaa@aaa
+		caaacaaacaaac
+		abaaababaaaba
+		aabaaaBaaabaa
+		abaaababaaaba
+		caaacaaacaaac
+		aaa@aaaaa@aaa
+		aa@aaabaaa@aa
+		a@aaababaaa@a
+		BaaacaaacaaaB
+	}
+
+    The default is all `a's.
+
+(6) A value of zero implies no constraint.
+
+(7) This specifies how the program should play the control player
+	in self-play modes, and how it chooses hints for you. 0 
+	means `use a plain maximise score strategy', while any other
+	positive integer means `use the same strategy the program is 
+	playing itself' (that is, subject to all the extra weight and
+	search constraint factors).
+
+(8) This specifies whether the weight should be calculated on the main 
+	word being played only, or on all the cross words made as
+	a result as well.  A value of 0 means main word only.
+
+(9) When you select this option, the computer will try to play an even
+	game with you. When it is ahead it will back off, while when it
+	is behind it will be more aggressive. A value of 0 disables this
+	feature.
+
+(10) This is a table of 27 numbers specifying how many of each type
+	of letter there are in the pool to start with. The 27th value
+	is the number of blank tiles. The default is two of each tile,
+	except for the vowels, of which there are 7 A's, 10 E's, 6 I's,
+	7 O's and 4 U's.
+
+(11) The default is a score of one for each letter.
+
+(12) See also LetterScores in the Game Configuration. A score and a
+	weight are different, as some low-scoring letters (especially
+	`S' and the blank) should be held on to for use in big-scoring
+	plays. They would thus have a negative weight. On the other 
+	hand, if it is desirable to get rid of a particular letter
+	as soon as  possible, it should have a positive weight.
+	Other letters should have a weight of zero. When WordsWorth 
+	discards tiles, it will discard positively weighted letters first,
+	and may discard letters with weight zero if the first action is 
+	insufficient. Also, it will discard duplicate letters in some
+	cases. If both a Q and a U are held, usually neither of these
+	will be discarded. 
+
+    Besides constraints on the search, length, and score of words,
+	WordsWorth chooses its move on a weight determined by the
+	formula:
+
+		 weight = score + length_weight_factor * length + 
+			sum_of_weights_of_letters_played
+
+(13) The allowed values are:
+
+	0 - exchanges are not allowed.
+	1 - an exchange constitutes a complete move.
+	2 - an exchange can be done before a pass and swap only.
+	3 - an exchange can be done before a pass and swap or
+		a word play.
+
+
+(14) The allowed video cards are:
+
+	Autodetect
+	Hercules
+	EGA
+	VGA
+	SuperVGA
+
+     Note that the SuperVGA support is for VESA-standard Super
+     VGA only. Other types of Super VGAs will be detected as
+     normal VGA. If this happens, try setting the SuperVGA card
+     and mode explicitly in the configuration. This works on my
+     ATI Ultra XL, even though it fails the autodetect unless I 
+     run its VESA driver. 
+ 
+     The possible mode values are (defaults shown with *):
+
+Card		Mode Number	Resolution	Colours	Notes
+-----------------------------------------------------------------
+Autodetect	*0
+
+Hercules	*0		720x348		2
+
+EGA		 0  		640x200		16	Not useable
+EGA		*1		640x350		16
+
+VGA		 0		640x200		16
+VGA		 1		640x350		16
+VGA		*2		640x480		16
+
+SuperVGA	 0		320x200		256	Not useable
+SuperVGA	 1		640x400		256
+SuperVGA	 2		640x480		256
+SuperVGA	*3		800x600		256
+SuperVGA	 4		1024x768	256
+	
+WARNING: If you explicitly specify a video card and you have a
+  different card, you may crash your machine! For example, if you 
+  have a Hercules card and you specify `videoCard=VGA' in your
+  configuration, you will have problems!
+
+(15) The font used for word and letter marks includes ten special 
+     characters with the values 0 through 9. These are specified using the
+     `$' character. The characters and their values are:
+
+$1	Double		$2	Triple		$3	 4x
+	Letter			Letter			Letter
+
+$4	  5x		$5	  6x		$6	Double
+	Letter			Letter			Word
+
+$7	Triple		$8       4x		$9	 5x
+	Word			Word			Word
+
+$0	 6x
+	Word
+
+    These labels are very small and not that readable, but may be
+    preferred to more symbolic representations with a single character.
+    They also do not work as well in all video modes. I have put them in
+    the distribution config files; you can change them if you wish.
+
+(16) The HotSquares option can take the values 0, 1 or 2. 0 is
+     disabled; 1 means the squares still have effect on main word
+     only, while 2 means they still affect the main word and any
+     new cross words.
+
+(17) WordsWorth has an infuriating habit of playing adjacent words
+     in the same direction, making lots of new short words perpendicular
+     to the two. This is something that most human players never do:
+     usually a human player only makes one extra cross word together
+     with the main word. You can limit the number that WordsWorth will
+     make by changing MaxNewCrossWords; 0 implies no limit. 2 is probably
+     a reasonable value; 1 is quite strict (but is the value used
+     in the setup option).
+
+=================================================================
+
+APPENDIX B - FORMAT OF WORDSWORTH SAVED GAME FILES
+--------------------------------------------------
+
+Saved games in WordsWorth have a fixed layout order. Once again
+whitespace is ignored, and comments can be used. 
+
+Each saved game begins with a flag, indicated by a `@' character
+followed immediately by a number. The number has the following
+meanings:
+
+	@0 - ignore what follows
+	@1 - load up game
+	@2 - set random number seed (no longer supported)
+	@3 - combination of @1 and @2
+	@4 - load up start board
+	@5 - same as @1 and @4
+	@6 - same as @2 and @4
+	@7 - same as @1, @2 and @4
+
+Then come the starting board letters (using `.' for empty). This
+allows you to set up boards with predetermined letters. Note that if
+you load up such a board, the restrictions on where the first move
+may be placed are relaxed; it can be played anywhere, provided it
+builds on to the preplaced letters (and even this need not be the
+case if the FreeForm configuration variable is set).
+
+For example:
+
+	...............
+	...............
+	...............
+	...............
+	......W........
+	..HELLO........
+	......R........
+	......L........
+	......D........
+	...............
+	...............
+
+The computer's starting rack is then specified, followed by the
+human's/control's. Then comes the actual list of moves. As we want to
+support undo, we need quite a lot of detail. Each move consists of:
+
+1) the move number 
+2) the player (0 - program, 1 - you or control)
+3) the action (P - pass; A - across; D - down; X - exchange)
+4) if the action was A, D or X, the starting row and column
+5) the word played or letters dropped. In the case of a word
+	a `mask' is used, with a dash `-' representing a letter
+	already on the board
+6) the tiles drawn, preceded by a '+'
+7) the score for the move, preceded by a '*'
+ 
+For example:
+
+ 1 0 A H G H-LLO +ACDO *12 
+
+This specifies the first move, which is played by the program, and is
+an across word starting at row H, column G. The play in this case is
+HELLO (the E was already on the board), and then the tiles A,C,D and
+O are drawn. The score made is 12.)
+
+At the end of the list of moves is a `0' character which represents the
+end of the file.
+
+Note that saved games do not include a saved configuration. It is up
+to you to ensure that the correct configuration file is used when you
+load a saved game.
+
+=================================================================
+
+APPENDIX C - Format of the Setup Configuration File
+---------------------------------------------------
+
+The configuration file for the SETUP program consists of a 
+number of entries of the form:
+
+@question?
+>answer_1	= action_1
+>answer_2	= action_2
+...
+>answer_n	= action_n
+%
+
+An alternative form is:
+
+@question?
+<Filename
+
+In this case, the answer/action pairs are read from the specified
+file. 
+
+Each entry (either question, or answer/action pair) must be on no
+more than a single line, as the end of the line is regarded as the
+terminating character of the action field.  The last entry is
+followed by a double %%. Note that the characters @, > and % MUST be
+in the first column to be recognised by the SETUP program. A line
+that has a # in the first column is treated as a comment and ignored.
+The question may be empty, in which case the answers, if any, are
+ignored, but each action is performed in sequence.
+
+Each action can be one of three types:
+
+1) A list of names of definition files, separated by whitespace.
+   This action results in `Include' configuration element entries
+   being written to the configuration file for each of the definition
+   files in the list, in order.
+
+2) A piece of text enclosed within braces {}. This is included
+   literally as a single line in the configuration file. It may
+   contain two special `escape' characters, namely TAB (represented
+   by `\t') and NEWLINE (represented by `\n'). In the latter case,
+   the resulting output will obviosuly be spread over more than
+   one line.
+
+3) A file name immediately preceded by a `<' character; this file
+   is opened and SETUP continues reading the configuration from
+   that file. When the end of that file is reached, SETUP continues
+   with the first file. This type of action is used to provide a
+   rudimentary form of `compound statement' in the configuration
+   process. Up to eight levels of nesting of setup files is 
+   supported. Also, if the question is empty, no further actions
+   related to that question will be performed after this action.
+
+For example, the configuration entry:
+
+	# Get the display type (color only)
+
+	@What type of display do you have?
+	>EGA		= { VideoType = EGA\nVideoMode = 2}
+	>VGA		= vgaspec.def color.def
+	>Super VGA	= <svga.cfg  
+
+will cause SETUP to ask:
+
+	What type of display do you have?
+
+	[ ] EGA
+	[ ] VGA
+	[ ] Super VGA
+
+and if you respond with `EGA', SETUP adds the lines:
+
+	VideoType = EGA
+	VideoMode = 2
+
+to the configuration file. If you respond with `VGA', SETUP adds
+the line:
+
+	Include = vgaspec.def
+	Include = color.def
+
+to the configuration file, and if you respond with `Super VGA', SETUP
+reads further instructions from the file `svga.cfg'.
+
+The `@' character following a question can be immediately followed by
+a digit representing the default value if no other value is specified,
+for example:
+
+	@3In what direction must first move be played?
+
+	>Across			= {FirstMoveDir\t= 2\n}
+	>Down			= {FirstMoveDir\t= 1\n}
+	>Either			= {FirstMoveDir\t= 0\n}
+
+NB - no question can have more than nine answers, and no
+line may exceed 80 characters!
+
+======== END OF README ============================================

@@ -1,0 +1,48 @@
+# No letters already on start board
+
+@1
+
+# computer's starting rack
+
+ABFGMOQ
+
+# human's starting rack
+
+ACEISSV
+
+# Move record
+
+1 0 D G H BAM +AEU *14
+2 1 A J F VESICA +OFHIDA *30
+3 0 D G G OF +DE *16
+4 1 D B F OAFISH +PIREMV *24
+5 0 D D E EAU +ENK *17
+6 1 D F D PRIMED +TWONUH *17
+7 0 D A D GEEK +EZAE *42
+8 1 D H C HOW +YUE *25
+9 0 D A C AND +DGI *19
+10 1 D I B YEN +LRE *24
+11 0 D I K G-ZED +AX_L *32
+12 1 A L J V-LURE +ORALT *20
+13 0 A K K -AX +NA *30
+14 1 D K A OTTAR +TOSGO *20
+15 0 D A B LA +AC *14
+16 1 D A A SLUG +IIDT *40
+17 0 D L J -ICE +RO_ *26
+18 1 D D I IDIOT +RTNWR *15
+19 0 A O H Qu-AN +UJSI *42
+20 1 D A H WORT +OEEE *27
+21 0 D E C JO +NP *15
+22 1 D B J TREEN +IYTIN *15
+23 0 D D K RIN + *15
+24 1 D K O Y-NTE + *24
+25 0 D A L PUBS + *30
+26 1 A C L -IO + *10
+27 0 A O H -----s + *14
+28 1 A N A -I + *4
+
+
+# terminating marker
+
+0
+

@@ -1,0 +1,923 @@
+{\rtf1\ansi \deff0
+{\fonttbl{\f0\froman Times New Roman;}{\f1\ftech Symbol;}{\f2\fswiss Arial;}
+{\f3\fmodern Courier;}{\f4\ftech Wingdings;}{\f5\ftech Monotype Sorts;}
+}{\stylesheet{\f2\fs20 \snext0 Normal;}
+{\s1 \b\fs24\sbasedon0\snext0 heading 1;}
+{\s2 \b\fs24\sbasedon0\snext0 heading 2;}
+{\s3 \b\fs24\sbasedon0\snext0 heading 3;}
+{\s4 \b\fs24\sbasedon0\snext0 heading 4;}
+{\s20\sb300\tqr\tldot\tx8640 \b\f2 \sbasedon0\snext0 toc 1;}
+{\s21\sb90\tqr\tldot\li400\tqr\tx8640 \f2\fs20\sbasedon0\snext0 toc 2;}
+{\s22\sb90\tqr\tldot\li800\tx8640 \f2\fs20 \sbasedon0\snext0 toc 3;}
+{\s23\sb90\tqr\tldot\li1200\tx8640 \f2\fs20 \sbasedon0\snext0 toc 4;}
+{\s30\fi-200\li200\tqr\tx3960 \f2\fs18 \sbasedon0\snext0 index 1;}
+{\s31\fi-200\li400\tqr\tx3960 \f2\fs18 \sbasedon0\snext0 index 2;}
+{\s32\fi-200\li600\tqr\tx3960 \f2\fs18 \sbasedon0\snext0 index 3;}
+{\s33\fi-200\li800\tqr\tx3960 \f2\fs18 \sbasedon0\snext0 index 4;}
+{\s35\qc\sb240\sa120 \b\f2\fs26 \sbasedon0\snext30 index heading;}
+}
+{\colortbl\red0\green0\blue0;
+\red0\green255\blue255;
+\red0\green255\blue0;
+\red255\green0\blue255;
+\red255\green0\blue0;
+\red255\green255\blue0;
+\red255\green255\blue255;
+}
+\ftnbj\ftnrestart
+
+#{\footnote Contents}
+${\footnote Contents}
++{\footnote browse00001}
+K{\footnote {K} Contents}
+!{\footnote DisableButton("Up")}
+\f2\fs20
+\fs20
+\fs20
+
+
+
+
+
+\par\pard\qc{\fs36\b XXWord v2.1\line
+The Crossword Solver's Apprentice}\par\pard
+\par\qc{\fs28 by Graham Wheeler\line
+(c) 1994--1998  All Rights Reserved}\par\pard
+
+{\b\fs36 Contents}\par\par\pard
+
+
+{\uldb Welcome}{\v topic0}\par\pard
+
+{\uldb Setting up a Crossword Grid}{\v topic1}\par\pard
+
+{\uldb Giving XWord Additional Clue Information}{\v topic2}\par\pard
+
+{\uldb Using the Mouse to define the Grid}{\v topic3}\par\pard
+
+{\uldb Solving the Crossword}{\v topic4}\par\pard
+
+{\uldb The Menus}{\v topic5}\par\pard
+
+{\uldb Dictionary Consultations}{\v topic11}\par\pard
+
+{\uldb Concept Keys}{\v topic20}\par\pard
+
+{\uldb Crossword Save File Format}{\v topic21}\par\pard
+\par\pard
+\page
+\page
+
+${\footnote Welcome}
+#{\footnote topic0}
++{\footnote browse00002}
+K{\footnote {K} Welcome}
+!{\footnote EnableButton("Up");ChangeButtonBinding("Up", "JumpId(`winxw.hlp', `Contents')")}
+\pard{\keepn\sa140\sb140\b\fs24 Welcome\par\pard}\par
+
+Welcome to XWord!\par\pard
+XWord is a crossword solver's helper. It uses some efficient
+ dictionary searching algorithms for computing the set of possible 
+ solutions to a partially complete crossword. It can then show you 
+ which possible letters can be placed in each square, and which 
+ possible words can go through each square. The idea is that you use 
+ XWord as you solve the crossword, entering letters as you determine
+ them, and using the feedback provided by XWord as additional clues.
+ XWord can also sometimes surprise you by completing a half to
+ two-thirds finished crossword correctly (although this depends on
+ giving XWord some additional information).\par\pard
+XWord is distributed as part of WordsWorth. As such, it uses the
+ same dictionary as WordsWorth, which does not contain proper nouns.
+ This restricts its usefulness somewhat, but the problem may be
+ addresses soon (Pentiums help!).\par\pard
+DISCLAIMER - This software is distributed without a warranty of 
+ any sort. You use this software at entirely your own risk. I will
+ not be responsible for any loss, damage, injury, death, disaster,
+ plagues, famine, divorces, disagreements, etc that may result from
+ the use of this software.\par\pard
+\page
+\page
+
+${\footnote Setting up a Crossword Grid}
+#{\footnote topic1}
++{\footnote browse00003}
+K{\footnote {K} Setting up a Crossword Grid}
+!{\footnote EnableButton("Up");ChangeButtonBinding("Up", "JumpId(`winxw.hlp', `Contents')")}
+\pard{\keepn\sa140\sb140\b\fs24 Setting up a Crossword Grid\par\pard}\par
+
+XWord is quite a powerful tool with a number of features. The
+ best way to learn how to use it is to get a crossword and start
+ using it. This manual gives a brief description of the process
+ that you should follow to use XWord to help you solve the crossword.\par\pard
+The first task is to set up a grid. Choose 'New' from the
+ File Menu. Enter the size of the grid in the dialog box (you can
+ use the sliders to change the values). The grid will then be shown 
+ with all squares set to black. You now have to enter the layout of
+ the white square. In the top left-hand corner is a red rectangle -
+ this is the board cursor position. You can move it around
+ the board with the cursor keys, or by clicking the mouse on a
+ part of the grid. To mark a square as empty (white), put the
+ cursor on it and type '?' (space will also do). To reset it 
+ to black, put the cursor on it and enter ''. To enter a known 
+ letter at a square, put the cursor on it and type the letter.\par\pard
+As you enter square contents, the cursor moves automatically,
+ generally following the direction you establish initially
+ by pressing the right or down cursor keys. An exception is 
+ when entering a letter, where the movement follows the direction
+ of empty white squares.\par\pard
+It is a good idea to set up the board with just '' and '?' before
+ entering any letters. Boards generally have some symmetry - this
+ is exploited by having some commands to flip and reflect the 
+ grid in various ways. These are available from the 'Grid' menu.
+ You can also set the default symmetry to use 'on the fly' as you
+ enter the grid, from the 'Options' menu. As most crosswords are
+ reflected and inverted about the center, it is a good idea to use
+ this as the default symmetry (called 'reflect and flip' in the
+ menu).\par\pard
+After entering the grid, it is a good to idea to prevent accidental
+ changes by 'locking' it (selected from the 'Grid' menu). You should
+ then enter any letters that you already know. Once you have done
+ that, you need to give XWord additional information about the clues
+ that you still have to solve. This is described in the next section.\par\pard
+
+\page
+\page
+
+${\footnote Giving XWord Additional Clue Information}
+#{\footnote topic2}
++{\footnote browse00004}
+K{\footnote {K} Giving XWord Additional Clue Information}
+!{\footnote EnableButton("Up");ChangeButtonBinding("Up", "JumpId(`winxw.hlp', `Contents')")}
+\pard{\keepn\sa140\sb140\b\fs24 Giving XWord Additional Clue Information\par\pard}\par
+
+XWord uses its dictionary to work out all possible solutions to the
+ crossword. However, if there is anything wrong with the board layout
+ constraints, the results will be unpredictable, and may include
+ XWord concluding that the crossword has no solution at all.\par\pard
+There are two ways these constraints can incorrect: you may have
+ entered letters on the board that are wrong, or XWord is being led
+ astray by the limitations of its dictionary. There is not much that 
+ can be done about the former, but there is some hope in the latter
+ case!\par\pard
+Firstly, you need to mark any multi-word clues as being multiple words.
+ You can do this using the mouse, as is described in the next section,
+ or using the keyboard, which we describe here.\par\pard
+Move on to the letters that start new words (other than the first
+ word) and use one (or both) of the following keys:\par\pard
+\fi0
+
+
+\tx360\tx800\li800\fi-800
+\tab{\b ^}   Mark square as start of a new down word (brown);
+
+\par\par\tx360\tx800\li800\fi-800
+\tab{\b >}   Mark square as start of a new across word (magenta)
+\par\pard
+
+The square will be displayed with a red line at the left edge
+ and/or the top edge, indicating the start of the new word.
+ It is a good idea to also mark squares which follow hyphens,
+ as WordsWorth's dictionary does not include any hyphenated words.\par\pard
+If you suspect that there are words that are not in the dictionary
+ (such as proper nouns), you need to tell XWord to not consult
+ the dictionary for that word. Move on to each letter of the word,
+ and mark it with one of the following:\par\pard
+\fi0
+
+
+\tx360\tx800\li800\fi-800
+\tab{\b |}   Don't limit current square to admissible down words
+
+\par\par\tx360\tx800\li800\fi-800
+\tab{\b -}   Don't limit current square to admissible across words
+
+\par\par\tx360\tx800\li800\fi-800
+\tab{\b +}   Don't limit current square by dictionary at all (a combination
+ of the above two)\par\pard
+
+These attributes will appear as horizontal and/or vertical 
+ lines through the center of the square.\par\pard
+XWord will automatically add such override attributes to any word
+ in the grid that is longer than the longest word in the XWord
+ dictionary (13 letters at the time of writing).\par\pard
+\page
+\page
+
+${\footnote Using the Mouse to define the Grid}
+#{\footnote topic3}
++{\footnote browse00005}
+K{\footnote {K} Using the Mouse to define the Grid}
+!{\footnote EnableButton("Up");ChangeButtonBinding("Up", "JumpId(`winxw.hlp', `Contents')")}
+\pard{\keepn\sa140\sb140\b\fs24 Using the Mouse to define the Grid\par\pard}\par
+
+To set up the grid with the mouse, you can click on a square
+ to select it (the cursor will move to the square). If the square
+ is already selected, then clicking with the {\i right} mouse button
+ will bring up a dialog box which will allow you to set the options
+ for the square. \par\pard
+You can also
+ specify an allowed subset of letters that can be used for the
+ square. This is useful in the case when you know that a clue 
+ is an anagram of a certain set of letters, but you don't know 
+ which anagram (you would presumably have done a dictionary 
+ consultation to find the anagram, so this is most likely to
+ occur when the consult failed to find the anagram, usualy
+ because it is a proper noun). You can then at least tell XWord
+ that it should only allow the known letters to be used for each
+ square in that word (unfortunately you need to do this for
+ each square in the word; on the other hand this gives a finer
+ level of control). Actually, the new Anagram attribute mentioned 
+ below makes this feature largely redundant, but it has been left 
+ in in case it proves useful.\par\pard
+Clicking on the selected square with with the {\i left} mouse button brings
+ up a dialog box that lets you specify settings for a whole clue
+ (down and/or across). You can specify the length of the word(s)
+ down and/or across, and whether the dictionary should be overridden
+ down and/or across. You can also specify multi-word clues by
+ separating the word lengths with commas. For example, a clue whose
+ answer consists of a two letter word followed by a three letter
+ word should be entered as 2,3.\par\pard
+Two additional attributes that can be set are the 'concept keys'
+ for the word, and, if you know the word is an anagram of some 
+ other word, you can enter that other word here too. Using these
+ attributes slows down the computation of constraints by XWord
+ quite considerably, but they can be extremely useful. For more
+ information about concept keys, see Section .\par\pard
+You can use any combination of mouse and keyboard actions when
+ setting up the board. XWord will handle these consistently.
+ The fastest way to set up a board is to use the left mouse button
+ to enter all the clues which have squares in the top left quadrant
+ (if the grid has two axes of symmetry) or in the top half of the
+ grid (if the board has one axis of symmetry), save the result,
+ use the Grid menu to complete the other three-quarters or half
+ of the grid, and then enter any dictionary overrides and multi-word
+ clue information in the rest of the grid, either with the keyboard 
+ or the mouse.\par\pard
+\page
+\page
+
+${\footnote Solving the Crossword}
+#{\footnote topic4}
++{\footnote browse00006}
+K{\footnote {K} Solving the Crossword}
+!{\footnote EnableButton("Up");ChangeButtonBinding("Up", "JumpId(`winxw.hlp', `Contents')")}
+\pard{\keepn\sa140\sb140\b\fs24 Solving the Crossword\par\pard}\par
+
+After entering the additional info, select {\f3 Enable Constraints}
+from the {\f3 Solve} menu and then select {\f3 Compute Contraints} from that
+ menu (or click on the white area surrounding the grid; this has the
+ same effect). XWord will attempt to solve the crossword, or
+ at least find the possible words that can be put in the grid, based
+ on its dictionary, and the constraints you have entered on the grid.
+ If you haven't filled in many letters yet, this may take a few minutes.\par\pard
+You can then move the cursor around to squares for which you 
+ do not know the letter (and which XWord didn't fill in when
+ you asked it to solve the crossword).  As you move about, you
+ will see two things changing. At the bottom of the screen XWord
+ displays all characters that it believes can be entered in the
+ current square. If the square is empty, on the right hand side
+ of the screen you will see up to 8 down words and 8 across
+ words that can go through the square. The total number of possible
+ words across and down is also shown.\par\pard
+As you move around, XWord works out all possible
+ words that can go down and across through that square, and hence
+ what letters can be placed on the square. When the board is nearly
+ empty, the number of possible words shown on the right may be in
+ the thousands. When it is a lot less than that, but still more than
+ eight, you can view the entire list by selecting {\f3 View Across} or
+{\f3 View Down} from the {\f3 Solve} menu.\par\pard
+You now proceed by using the lists of possible words and letters that
+ XWord displays, together with the crossword clues, to work out
+ more letters. Every time you enter another letter XWord can
+ narrow down the possibilities further. If XWord finds that a
+ square can have only one possible letter, it will display the letter 
+ in red, without actually committing the letter to the board permanently.
+ Solving the crossword then becomes a collaborative process between 
+ you and XWord. \par\pard
+If the number of possible words is ever shown as zero, then you have
+ a problem. Somewhere you have made an error in setting up the grid,
+ or (often the case) there is a word that is not in the dictionary
+ and for which you have not told XWord to override the
+ dictionary (or you have specified concept key restrictions that are
+ not matching the right word, or incorrect anagram restrictions).
+ As a result, XWord has concluded that the crossword has no solution. 
+ You will have to try to identify the problem and correct it (this can
+ be tricky - a good approach is to move around the grid, discarding the
+ constraints (from the 'Solve' menu) before each move, and look for
+ places on the grid that still show zero possibilities - these are
+ the potential problem areas).\par\pard
+HOWEVER, THERE IS ONE CASE IN WHICH SEEING ZERO POSSIBILITIES IS OK!
+ This is if the word in the crossword
+ is longer than the longest word in the dictionary. If this is the case,
+ XWord will automatically override the resulting artificial constraint 
+ in any perpendicular cross words. You will notice this happening often
+ in the demo version, where the dictionary is limited to words of six
+ letters or less; any words of more than six letters will show up with
+ zero choices, but the words that cross it will be unaffected.\par\pard
+\page
+\page
+
+${\footnote The Menus}
+#{\footnote topic5}
++{\footnote browse00007}
+K{\footnote {K} The Menus}
+!{\footnote EnableButton("Up");ChangeButtonBinding("Up", "JumpId(`winxw.hlp', `Contents')")}
+\pard{\keepn\sa140\sb140\b\fs24 The Menus\par\pard}\par
+
+
+{\uldb The File Menu}{\v topic6}\par\pard
+
+{\uldb The Solver Menu}{\v topic7}\par\pard
+
+{\uldb The Tool Menu}{\v topic8}\par\pard
+
+{\uldb The Grid Menu}{\v topic9}\par\pard
+
+{\uldb The Options Menu}{\v topic10}\par\pard
+\page
+\page
+
+${\footnote Dictionary Consultations}
+#{\footnote topic11}
++{\footnote browse00013}
+K{\footnote {K} Dictionary Consultations}
+!{\footnote EnableButton("Up");ChangeButtonBinding("Up", "JumpId(`winxw.hlp', `Contents')")}
+\pard{\keepn\sa140\sb140\b\fs24 Dictionary Consultations\par\pard}\par
+
+The dialog box for dictionary consultations lets you generate lists 
+ of anagrams and words, given a set of letters. The set of letters you
+ specify can include blank tiles, as well as things like 'any vowel'
+ or 'any non-vowel'.\par\pard
+The method used is fairly complex but worth understanding if you
+ want to make full use of it. Underlying each consultation are two
+ pieces of information:\par\pard
+\fi0
+
+
+\tx360\tx800\li800\fi-800
+\tab{\b o}\tab a word template which specifies which letters are allowed in
+ which positions in matching words;
+\par\par\tx360\tx800\li800\fi-800
+\tab{\b o}\tab a letter pool, which specifies which letters are available
+ for use in unconstrained entries in the word template.\par\pard
+
+
+{\uldb Some Examples}{\v topic12}\par\pard
+
+{\uldb Consultation Match Types}{\v topic13}\par\pard
+
+{\uldb Specifying Consultation Patterns}{\v topic14}\par\pard
+
+{\uldb Special Pattern Characters}{\v topic15}\par\pard
+
+{\uldb Letter Ranges}{\v topic16}\par\pard
+
+{\uldb Consultation Processing}{\v topic17}\par\pard
+
+{\uldb A Tip for Multi-Word Anagrams}{\v topic18}\par\pard
+
+{\uldb Word Length and Count Constraints}{\v topic19}\par\pard
+\page
+\page
+
+${\footnote Concept Keys}
+#{\footnote topic20}
++{\footnote browse00022}
+K{\footnote {K} Concept Keys}
+!{\footnote EnableButton("Up");ChangeButtonBinding("Up", "JumpId(`winxw.hlp', `Contents')")}
+\pard{\keepn\sa140\sb140\b\fs24 Concept Keys\par\pard}\par
+
+
+A new feature in version 2.0 is the use of 'concept keys'. In WordsWorth
+ you can only use these when doing dictionary consultations; in XWord you can
+ also associate concept keys with words in the crossword grid.\par\pard
+Concept keys are essentially semantic categorisations of words, somewhat
+ like a thesaurus. The file containing the keys is named "thes.dat" for
+ this reason. This file contains semantic associations between nearly
+ 25,000 words. When you specify a concept key, the dictionary will be
+ constrained to match only those words with possible semantic associations 
+ to the key. These semantic associations can be quite loose, as they are
+ based on transitive relations. That is, a word A is considered to be 
+ potentially related to a concept key C if there is a word B such that 
+ A and B are related in meaning, and so are B and C. Furthermore, the way
+ that concept key restrictions are implemented in WordsWorth/XWord is not
+ infallible - extra words can be admitted that are not actually related,
+ although the actual number of erroneous matches should be a very small
+ percentage. This fallibility is a tradeoff; the algorithm used sacrifices
+ complete accuracy for speed. Concept key restrictions have a very low 
+ impact on the performance of dictionary consultations (although somewhat
+ more of an impact in XWord grids).\par\pard
+You can specify more than one key, separated by commas. Keys must be
+ single words. If more than one key is listed, the intersection is used,
+ but you can change this to a union by starting the list with "+". If
+ there are no words satisfying the concept key(s), they are ignored. 
+ This is enforced more strongly in the XWord grid, where the word lengths
+ are also used; i.e. if you specify concept keys for a six letter word
+ in the grid, and there are no six letter words matching the keys, then
+ the keys are ignored.\par\pard
+To illustrate the use of concept keys, here is an example. Say you have
+ a six-letter word for which the clue is "A swamp". You know that the
+ second letter is "O". Then, either by entering it on the grid via the
+ word settings dialog, or in dictionary consultations, you can specify
+ the pattern ":O::::" and the concept key "swamp" to restrict the search.
+ This will result in the following matches:\par\pard
+{\f3\fs20       BOLDLY\par
+      FOXILY\par
+      MORASS\par
+      NORMAL\par
+      TOPPLE\par
+}\pard
+\line
+If, on the other hand, you had specified the concept key "bog", then
+ the following words would be matched:\par\pard
+{\f3\fs20       COARSE\par
+      COBWEB\par
+      HOOKER\par
+      HOOPLA\par
+      LOTTED\par
+      MODERN\par
+      MOLDER\par
+      MORASS\par
+      MOTHER\par
+      ROTTEN\par
+      SOILED\par
+      TOILET\par
+}\pard
+\line
+The combination of the two ("swamp,bog") 
+ gives the best results, namely the intersection of these
+ two lists which is the single (correct) word "MORASS".\par\pard
+The obvious place to use concept keys with XWord is when you have clues
+ consisting of a single word. You can then enter that word as a concept
+ key. It is sometimes a good idea to try a dictionary consultation with
+ the concept key first - you may find that there are only a few matches,
+ none of which is the word that you are looking for, in which case using
+ the concept key in the grid would be a bad idea.\par\pard
+\page
+\page
+
+${\footnote Crossword Save File Format}
+#{\footnote topic21}
++{\footnote browse00023}
+K{\footnote {K} Crossword Save File Format}
+!{\footnote EnableButton("Up");ChangeButtonBinding("Up", "JumpId(`winxw.hlp', `Contents')")}
+\pard{\keepn\sa140\sb140\b\fs24 Crossword Save File Format\par\pard}\par
+
+For those who are interested in such things, this section describes the
+ format of saved crossword files used by XWord.\par\pard
+The file begins with the dimensions of the board, and the basic grid layout.
+ Here is an example:\par\pard
+{\f3\fs20 13 13\par
+\par
+CHAFF#S.....E\par
+A#.#OMAHA#.#R\par
+N....#GENUINE\par
+A#.#..O..#.#C\par
+SANTA##TEAPOT\par
+TA......#.#.#\par
+AR..#.#.#...P\par
+#O#.#...H...E\par
+.N..K.##A...R\par
+.#.#O.D.R#.#V\par
+....A.O#ACCRA\par
+.#.#L.V.R#.#D\par
+RAMPAGE#ELOPE\par
+}\pard
+\line
+Because we only have a
+ single letter to represent each square, if a square contains
+ a letter and a flag or more than one flag, not all of the information
+ can be represented. However, in this case the board can be followed by
+ additional lines of the form:\par\pard
+{\f3\fs20 <row> <column> <`command' character>\par
+}\pard
+\line
+or:\par\pard
+{\f3\fs20 <row> <column> <`command character'><argument>\par
+}\pard
+\line
+to specify this additional information. The full set of 
+ command characters that can be used is:\par\pard
+{\f3\fs20        	.       Empty square\par
+       	?       Empty square\par
+       	#       Black square\par
+       	^       Start of new down word in multi-word clue\par
+       	>       Start of new across word in multi-word clue\par
+       	+       Do not restrict this square at all\par
+       	|       Do not restrict this square in a downward direction\par
+       	-       Do not restrict this square in an across direction\par
+       	A-Z     Put this letter in the square\par
+       	=       Concept keys across\par
+        :       Concept keys down\par
+       	&       Anagram across\par
+        *       Anagram down\par
+}\pard
+\line
+The last four are followed by a string argument containing the concept
+ key list or anagram letters.\par\pard
+Here is an example of such a file as saved by XWord:
+      
+\par\pard{\f3\fs20       15 15\par
+      \par
+      ; Created by XWord\par
+\par
+      #......#......#\par
+      #.#.#.#.#.#.#.#\par
+      ....#..........\par
+      #.#.#.#.#.#.#.#\par
+      ......#........\par
+      #.###.#.#.#.#.#\par
+      .........#....#\par
+      ###.###.###.###\par
+      #....#.........\par
+      #.#.#.#.#.###.#\par
+      ........#......\par
+      #.#.#.#.#.#.#.#\par
+      ..........#....\par
+      #.#.#.#.#.#.#.#\par
+      #......#......#\par
+      \par
+      \par
+      2 11 >\par
+      6 7 ^\par
+      8 10 >\par
+      8 12 >\par
+      8 13 |\par
+      9 13 |\par
+      10 13 ^\par
+      11 7 ^\par
+      12 6 >\par
+}\pard
+\line
+      
+ Note that saved board files can have comment lines starting with 
+ semicolons. However, these CANNOT appear before the board dimensions!\par\pard
+
+\page
+\page
+
+${\footnote The File Menu}
+#{\footnote topic6}
++{\footnote browse00008}
+K{\footnote {K} The File Menu}
+!{\footnote EnableButton("Up");ChangeButtonBinding("Up", "JumpId(`winxw.hlp', `topic5')")}
+\pard{\keepn\sa140\sb140\b\fs24 The File Menu\par\pard}\par
+
+The file menu in Xword mode lets you save and load your crosswords
+ and grids, start new grids, print the grid to a printer, or quit XWord. \par\pard
+\page
+
+${\footnote The Solver Menu}
+#{\footnote topic7}
++{\footnote browse00009}
+K{\footnote {K} The Solver Menu}
+!{\footnote EnableButton("Up");ChangeButtonBinding("Up", "JumpId(`winxw.hlp', `topic5')")}
+\pard{\keepn\sa140\sb140\b\fs24 The Solver Menu\par\pard}\par
+
+\fi0
+
+
+\tx360\tx800\li800\fi-800
+\tab{\b Enable Constraints}   - Enabling constraints turns on XWord's
+ word matching as you move about the grid. Usually you will not do
+ this until you have finished entering the grid, as it serves no
+ purpose at that stage. When constraints are enabled, moving around
+ the grid with the keyboard is much slower.
+\par\par\tx360\tx800\li800\fi-800
+\tab{\b Disable Constraints}   - If you have enabled constraints but 
+ find that you need to move around the grid quickly with the keyboard
+ for some reason, you can use this to disable constraint computation.
+\par\par\tx360\tx800\li800\fi-800
+\tab{\b Compute Constraints}   - XWord will work out the current 
+ constraints on the entire grid. The more empty squares on the grid,
+ the longer this will take. Nontheless, it is usually acceptable to
+ do this each time you solve a clue and enter it in the grid. A
+ fast way to do this is to click on the white area surrounding the
+ grid.
+\par\par\tx360\tx800\li800\fi-800
+\tab{\b Discard Constraints}   - XWord discards the contraints it
+ has worked out. XWord will do this automatically if you change 
+ the grid in any way other than entering a letter, but just in case
+ you can use this menu option to force a discard.
+\par\par\tx360\tx800\li800\fi-800
+\tab{\b View Across}   this pops up a window with a list of all the
+ words that can pass through the current square in a horizontal
+ direction.
+\par\par\tx360\tx800\li800\fi-800
+\tab{\b View Down}   this pops up a window with a list of all the
+ words that can pass through the current square in a vertical
+ direction.\par\pard
+
+\page
+
+${\footnote The Tool Menu}
+#{\footnote topic8}
++{\footnote browse00010}
+K{\footnote {K} The Tool Menu}
+!{\footnote EnableButton("Up");ChangeButtonBinding("Up", "JumpId(`winxw.hlp', `topic5')")}
+\pard{\keepn\sa140\sb140\b\fs24 The Tool Menu\par\pard}\par
+
+\fi0
+
+
+\tx360\tx800\li800\fi-800
+\tab{\b Consult Dictionary}   this is identical to dictionary
+ consultations in WordsWorth. It is discussed further below.
+\par\par\tx360\tx800\li800\fi-800
+\tab{\b Dump Dictionary}   allows you to dump the words in the current
+ dictionary to a plain text file.
+\par\par\tx360\tx800\li800\fi-800
+\tab{\b Build Dictionary}   allows you to convert a plain text file
+ containing alphabetically sorted words, one per line, into the
+ compressed format used by WordsWorth and XWord.
+\par\par\tx360\tx800\li800\fi-800
+\tab{\b Interrupt Build}   allows you to interrupt a dictionary build;
+ The build can be resumed later. The reason for allowing the build
+ to be interrupted and resumed is that it can take several hours.
+\par\par\tx360\tx800\li800\fi-800
+\tab{\b Resume Build}   allows you to resume an interrupted dictionary build.
+
+\par\par\tx360\tx800\li800\fi-800
+\tab{\b Register}   allows you to register the program so that all
+ features and dictionaries can be used.\par\pard
+
+\page
+
+${\footnote The Grid Menu}
+#{\footnote topic9}
++{\footnote browse00011}
+K{\footnote {K} The Grid Menu}
+!{\footnote EnableButton("Up");ChangeButtonBinding("Up", "JumpId(`winxw.hlp', `topic5')")}
+\pard{\keepn\sa140\sb140\b\fs24 The Grid Menu\par\pard}\par
+
+\fi0
+
+
+\tx360\tx800\li800\fi-800
+\tab{\b Flip Grid}   Mirror-reflect top half of board setup
+ left-to-right;
+\par\par\tx360\tx800\li800\fi-800
+\tab{\b Reflect Horizontally}   Copy left half board setup to right
+ half;
+\par\par\tx360\tx800\li800\fi-800
+\tab{\b Reflect Vertically}   Copy top half board setup to bottom half.
+
+\par\par\tx360\tx800\li800\fi-800
+\tab{\b Set Grid Symmetry}   This lets you set the 'on-the-fly'
+ symmetry to use while the grid is being entered. Initially
+ the default symmetry (set from the 'Options' menu) is used;
+ you can use this option to change to a symmetry other than
+ the default;
+\par\par\tx360\tx800\li800\fi-800
+\tab{\b Lock/Unlock Grid}   Locking the grid prevents any further
+ alteration of the basic black square/white square layout. 
+ This is useful once you have entered the grid, to prevent it
+ from being accidentally modified, which can happen quite 
+ easily if you enter a word with automoving on, and the 
+ current automove direction is not set correctly. Unlocking
+ the grid will allow you to edit it again.
+\par\par\tx360\tx800\li800\fi-800
+\tab{\b Enable/Disable Automove}   This lets you turn cursor
+ automoving on or off.\par\pard
+
+\page
+
+${\footnote The Options Menu}
+#{\footnote topic10}
++{\footnote browse00012}
+K{\footnote {K} The Options Menu}
+!{\footnote EnableButton("Up");ChangeButtonBinding("Up", "JumpId(`winxw.hlp', `topic5')")}
+\pard{\keepn\sa140\sb140\b\fs24 The Options Menu\par\pard}\par
+
+\fi0
+
+
+\tx360\tx800\li800\fi-800
+\tab{\b Configure Colours}   This lets you choose the colours 
+ that XWord should use when drawing the grid;
+\par\par\tx360\tx800\li800\fi-800
+\tab{\b Configure Options}   This lets you set the default
+ crossword size and symmetry, and select the dictionary
+ file that should be used.\par\pard
+
+\page
+
+${\footnote Some Examples}
+#{\footnote topic12}
++{\footnote browse00014}
+K{\footnote {K} Some Examples}
+!{\footnote EnableButton("Up");ChangeButtonBinding("Up", "JumpId(`winxw.hlp', `topic11')")}
+\pard{\keepn\sa140\sb140\b\fs24 Some Examples\par\pard}\par
+
+A few examples can be used to illustrate the idea:\par\pard
+\fi0
+
+
+\tx360\tx800\li800\fi-800
+\tab{\b o}\tab for the literal word ROPE the word template is "ROPE" and the
+ letter pool is empty;
+\par\par\tx360\tx800\li800\fi-800
+\tab{\b o}\tab for anagrams of ROPE the word template is unconstrained (we
+ will write this as "####") and the
+ letter pool consists of the letters R, O, P and E;
+\par\par\tx360\tx800\li800\fi-800
+\tab{\b o}\tab for anagrams of ROPE that begin with R and have P in the third
+ place the word template is "R#P#" and the letter pool is "O,E".
+\par\pard
+
+Given a word template and letter pool, WordsWorth tries to find
+ matches by plugging different letters from the letter pool in
+ to '#' positions in the word template.\par\pard
+\page
+
+${\footnote Consultation Match Types}
+#{\footnote topic13}
++{\footnote browse00015}
+K{\footnote {K} Consultation Match Types}
+!{\footnote EnableButton("Up");ChangeButtonBinding("Up", "JumpId(`winxw.hlp', `topic11')")}
+\pard{\keepn\sa140\sb140\b\fs24 Consultation Match Types\par\pard}\par
+
+In the consult dialog, the first choice you have is the type of 
+ match to use. There are four possibilities:\par\pard
+\fi0
+
+
+\tx360\tx800\li800\fi-800
+\tab{\b Use all letters}   Matches must match the whole word template;
+
+\par\par\tx360\tx800\li800\fi-800
+\tab{\b Match prefixes}   Matches may match any leading subsection of the word
+ template;
+\par\par\tx360\tx800\li800\fi-800
+\tab{\b Match suffixes}   Matches may match any trailing subsection of the word
+ template;
+\par\par\tx360\tx800\li800\fi-800
+\tab{\b Multi-word anagrams}   This is a special case. The whole word
+ template must be matched but the match may consist of multiple words.\par\pard
+
+The first and last case should be clear; the prefix and suffix
+ matches can be illustrated by continuing with our last example.
+ That is, we have word template "R#P#" and letter pool "O,E".
+ Using prefix matching, WordsWorth would find words
+ that match any of the following situations:\par\pard
+{\f3\fs20       Word Template        Letter Pool\par
+      ================================\par
+             R                 OE\par
+             R#                OE\par
+             R#P               OE\par
+             R#P#              OE\par
+}\pard
+\line
+Using suffix matching, WordsWorth would instead use:\par\pard
+{\f3\fs20       Word Template        Letter Pool\par
+      ================================\par
+             #                 OE\par
+             P#                OE\par
+             #P#               OE\par
+             R#P#              OE\par
+}\pard
+\line
+Thus in the first case, WordsWorth will see if any of the following
+ are valid words:\par\pard
+{\f3\fs20       R    RO   RE   ROP   REP   ROPE   REPO\par
+}\pard
+\line
+In the suffix case, WordsWorth will check the following:\par\pard
+{\f3\fs20       O    E    PO   PE    OPE   EPO    ROPE    REPO\par
+}\pard
+\line
+Note that in the case that the word template is unconstrained (that
+ is, all 's), then prefix and suffix matching are identical, both
+ having the meaning "words consisting of one or more letters from...".
+ Reread the last sentence if you didn't understand it.\par\pard
+\page
+
+${\footnote Specifying Consultation Patterns}
+#{\footnote topic14}
++{\footnote browse00016}
+K{\footnote {K} Specifying Consultation Patterns}
+!{\footnote EnableButton("Up");ChangeButtonBinding("Up", "JumpId(`winxw.hlp', `topic11')")}
+\pard{\keepn\sa140\sb140\b\fs24 Specifying Consultation Patterns\par\pard}\par
+
+When making consultations, you don't explicitly specify the
+ word template and letter pool. Rather, you specify a single pattern.
+ In the simplest case a pattern is a sequence of letters (whitespace
+ may be present but is ignored). The letters may be either upper case
+ or lower case, the former meaning that the letter must occur in that
+ position (i.e. is a word template constraint), while lower case means
+ the letter need not be in that position (i.e. it is in the letter
+ pool). Thus our example above would be specified as "RoPe" (or
+ equivalently as "RePo"). A few more examples should help here:\par\pard
+{\f3\fs20       Pattern          Word Template    Letter Pool\par
+      =============================================\par
+      informatION      ########ION      informat\par
+      MISinformed      MIS########      informed\par
+      TreateD          T#####D          reate\par
+}\pard
+\line
+The first two are typical examples of patterns that would be used
+ for suffix and prefix matching, respectively. \par\pard
+\page
+
+${\footnote Special Pattern Characters}
+#{\footnote topic15}
++{\footnote browse00017}
+K{\footnote {K} Special Pattern Characters}
+!{\footnote EnableButton("Up");ChangeButtonBinding("Up", "JumpId(`winxw.hlp', `topic11')")}
+\pard{\keepn\sa140\sb140\b\fs24 Special Pattern Characters\par\pard}\par
+
+Patterns can also have some special characters. Each has an 'upper
+ case' and a 'lower case' form, analagous to letters. The special
+ characters are:\par\pard
+{\f3\fs20       Meaning   Upper Case   Lower Case\par
+      =================================\par
+      Any letter      :         .\par
+      Any vowel       *         +\par
+      Any consonant   =         -\par
+}\pard
+\line
+\page
+
+${\footnote Letter Ranges}
+#{\footnote topic16}
++{\footnote browse00018}
+K{\footnote {K} Letter Ranges}
+!{\footnote EnableButton("Up");ChangeButtonBinding("Up", "JumpId(`winxw.hlp', `topic11')")}
+\pard{\keepn\sa140\sb140\b\fs24 Letter Ranges\par\pard}\par
+
+Patterns can also have 'letter ranges' enclosed in square brackets,
+ such as '[A-Z]' (any letter), '[AEIOU]' (any one vowel) or '[A-MZ]' (any 
+ one of A through M, or Z). To specify the opposite of a range, start
+ the range with an exclamation mark or caret. For example, [!AEIOU] matches 
+ any non-vowel. The letter case of the first letter in the range
+ determines whether the range will be used as a word template
+ constraint or as a letter pool entry; other than this letter case is
+ ignored. Thus, for example, "[a-Z]" is legitimate and equivalent to
+ "[a-z]". Similarly "[A-z]" is equivalent to "[A-Z]".
+ You cannot use the other special characters within a
+ range (thus for example, "[*y] is not valid).\par\pard
+\page
+
+${\footnote Consultation Processing}
+#{\footnote topic17}
++{\footnote browse00019}
+K{\footnote {K} Consultation Processing}
+!{\footnote EnableButton("Up");ChangeButtonBinding("Up", "JumpId(`winxw.hlp', `topic11')")}
+\pard{\keepn\sa140\sb140\b\fs24 Consultation Processing\par\pard}\par
+
+WordsWorth does dictionary consultations in the background, to
+ give you the opportunity to interrupt, or to continue playing a
+ game while a consultation is in process. You can interrupt a
+ consultation by starting a new one, or by clicking on the 'Stop'
+ button in the panel. The matches WordsWorth has found up to that 
+ point will then be displayed.\par\pard
+Depending on the consultation pattern, even a background
+ consultation can slow the game up considerably. A percentage 
+ progress indicator is displayed on the status bar to give
+ you an idea of how far the consultation is. \par\pard
+You can also perform a consulation in the foreground; in this
+ case the program will block until the dictionary matching
+ process is complete.\par\pard
+\page
+
+${\footnote A Tip for Multi-Word Anagrams}
+#{\footnote topic18}
++{\footnote browse00020}
+K{\footnote {K} A Tip for Multi-Word Anagrams}
+!{\footnote EnableButton("Up");ChangeButtonBinding("Up", "JumpId(`winxw.hlp', `topic11')")}
+\pard{\keepn\sa140\sb140\b\fs24 A Tip for Multi-Word Anagrams\par\pard}\par
+
+Quite often there will be thousands of possible anagrams and it
+ becomes impossible to search out the good ones. There is a
+ technique to help in this case - look through some of the possibilities,
+ and select a word you think is appropriate in the final anagram.
+ Then subtract this word from the input, and see what words
+ can be made from the remaining letters. For example, consider
+ VEGETARIAN. We see that some anagrams have the word RAVE, and 
+ decide to use this. This means we must find anagrams of the remaining
+ letters, namely GETIAN. We find the word EATING. Thus 
+ VEGETARIAN=EATING RAVE.\par\pard
+\page
+
+${\footnote Word Length and Count Constraints}
+#{\footnote topic19}
++{\footnote browse00021}
+K{\footnote {K} Word Length and Count Constraints}
+!{\footnote EnableButton("Up");ChangeButtonBinding("Up", "JumpId(`winxw.hlp', `topic11')")}
+\pard{\keepn\sa140\sb140\b\fs24 Word Length and Count Constraints\par\pard}\par
+
+You can specify minimum and maximum word lengths for prefix,
+ suffix and multi-word anagram matches. For the latter you can also
+ specify the minimum and maximum number of words allowed per match.
+ If these are set to zero (the default) they will have no effect.
+ They can be useful when generating multi-word anagrams with patterns
+ that contain several A's or I's, as WordsWorth will likely 
+ churn out thousands of matches in these cases starting with the words 'A',
+ 'AA', and/or 'I'. Setting the minimum length to three (for example)
+ can help prevent this.\par\pard
+
+\page
+\page
+
+\page
+}

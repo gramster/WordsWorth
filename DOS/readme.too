@@ -1,0 +1,64 @@
+Hi Mike
+
+Thanks for you rgistration. I've looked at your algorithm, and
+it is essentially the same as I use. You may wonder how WordsWorth
+is so fast. The key is is in data structure.
+
+If you look at the zip file, you will notice that the wwbig.dic
+and wwmed.dic files couldn't be compressed. That is not because
+they are already compressed - they aren't, not in the sense of
+Lev-Zimpel - but because the data structure is optimal. 
+
+The idea is quite simple. Think of the dictionary as a tree
+structure. The root node has 26 branches, one for each letter.
+These in turn have further branches. Nodes can be marked as
+terminal, indicating the end of a word; leaf nodes are always
+terminal, but terminal nodes need not be leaf nodes (just think
+of NODE and NODES in the dictionary; the E in NODE is terminal
+but not a leaf, as it has at least one child, the S in NODES).
+
+To look up a word, you just traverse through the tree, starting
+at the root. If there is no child corresponding to the current
+letter in the word, it isn't in the dictionary, otherwise the
+child is followed. When we get to the end of the word, we must
+be at a terminal node for it to be considered valid.
+
+For example, here is my lookup routine in pseudocode:
+
+int lookup(char *word)
+{
+    node n = root, last;
+    if (word is null or empty) return false;
+    while (*word)
+    {
+	if (n is null or has no child for *word) return fail;
+    		return 0;
+        else set last = n and set n = child node;
+        word++;
+    }
+    if (last is a terminal node) return true;
+}
+
+This structure also lends itself nicely to recursion, something
+I make use of in XWORD.
+
+The dictionary tree can be collapsed further without changing any
+of the algorithms, by merging identical subtrees. The result is
+an optimised finite-state recogniser for the set of strings
+constituting the dictionary. After this the result takes up much
+less memory than the ASCII plaintext (e.g. the big dictionary is
+362kb in size while the plaintext is well over a megabyte; and 
+there is wasted space in the structure in that I use 32-bit longs
+to represent arcs (rather than nodes) in the graph, and about 5
+bits per word are currently unused.
+
+The algorithm is described in an article in Communications of the ACM in
+May 1988, entitled `The World's Fastest Scrabble Program'. I highly
+recommend you read this before embarking on your project. Even if you
+don't do it exactly the same, there are some good ideas there.
+
+Cheers, and let me know how it turns out.
+
+Graham
+
+

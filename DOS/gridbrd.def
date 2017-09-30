@@ -1,0 +1,22 @@
+Rows		= 15
+Columns		= 15
+
+boardPositionScore = {
+	EadadadCdadadaE
+	a@a@a@aaa@a@a@a
+	daBaaababaaaBad
+	a@a@a@aaa@a@a@a
+	daaaBaaaaaBaaad
+	a@a@a@aaa@a@a@a
+	dabaaababaaabad
+	CaaaaaaBaaaaaaC
+	dabaaababaaabad
+	a@a@a@aaa@a@a@a
+	daaaBaaaaaBaaad
+	a@a@a@aaa@a@a@a
+	daBaaababaaaBad
+	a@a@a@aaa@a@a@a
+	EadadadCdadadaC
+}
+
+

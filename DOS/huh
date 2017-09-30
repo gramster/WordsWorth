@@ -1,0 +1,28 @@
+# No letters already on start board
+
+@1
+
+# computer's starting rack
+
+EEEMNW_
+
+# human's starting rack
+
+AAHOQRY
+
+# Move record
+
+1 1 P  + *0
+2 0 D D H WEENiE +URICEE *24
+3 1 A E E HAR- +LOO *14
+4 0 X H H I + *0
+5 1 P OOO +_PU *0
+6 0 A J F CERUMEn +UJSNUSB *78
+7 1 D A D QUAYs +TFEIE *59
+8 0 X E D S + *0
+
+
+# terminating marker
+
+0
+

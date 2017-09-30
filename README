@@ -1,0 +1,13 @@
+WordsWorth and XWord, a Scrabble-like game and a crossword
+solving assistant, that I wrote in the 1990s. There is an
+ealier DOS version that handles its own graphics, and the 
+Windows version, which relied on wxWindows. 
+
+WordsWorth is based on the ACM article "The World's Fastest
+Scrabble Program", but adds a lot of configureability in the
+board, the rules, etc.
+
+One day I will get XWord working again; that was the one of these
+I actually used; along with WordFind, my Palm app, these were
+awesome for helping with cryptic crosswords when I was stuck.
+

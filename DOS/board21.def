@@ -1,0 +1,27 @@
+Rows		= 21
+Columns		= 21
+
+boardPositionScore = {
+	CaaCaabaaaCaaabaaCaaC
+	aBaaBaaacaaacaaaBaaBa
+	aaBaaBaaababaaaBaaBaa
+	CaaCaabaaaCaaabaaCaaC
+	aBaaBaaacaaacaaaBaaBa
+	aaBaaBaaababaaaBaaBaa
+	baabaaBaaabaaaBaabaab
+	aaaaaaaBaaaaaBaaaaaaa
+	acaacaaacaaacaaacaaca
+	aabaabaaababaaabaabaa
+	CaaCaabaaaBaaabaaCaaC
+	aabaabaaababaaabaabaa
+	acaacaaacaaacaaacaaca
+	aaaaaaaBaaaaaBaaaaaaa
+	baabaaBaaabaaaBaabaab
+	aaBaaBaaababaaaBaaBaa
+	aBaaBaaacaaacaaaBaaBa
+	CaaCaabaaaCaaabaaCaaC
+	aaBaaBaaababaaaBaaBaa
+	aBaaBaaacaaacaaaBaaBa
+	CaaCaabaaaCaaabaaCaaC
+}
+

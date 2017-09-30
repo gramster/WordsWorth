@@ -1,0 +1,68 @@
+# The values here are based on the text of the CIA World Fact Book
+# Tile count is freq/10000. 
+
+LetterFrequencies = {
+12  # A 
+2   # B 
+4   # C 
+4   # D 
+13  # E 
+2   # F 
+2   # G 
+3   # H 
+10  # I 
+0   # J 
+1   # K 
+6   # L 
+4   # M 
+10  # N 
+9   # O 
+3   # P 
+0   # Q 
+9   # R 
+7   # S 
+10  # T 
+4   # U 
+1   # V 
+1   # W 
+0   # X 
+2   # Y 
+0   # Z 
+2   # Blank
+}
+ 
+# The scores here are based on 2*log(150000/freq) using the
+# original frequencies, not the approximations above.
+
+LetterScores = {
+0  # a
+4  # b
+2  # c
+3  # d
+0  # e
+4  # f
+4  # g
+3  # h
+1  # i
+9  # j
+6  # k
+2  # l
+3  # m
+1  # n
+1  # o
+3  # p
+10 # q
+1  # r
+1  # s
+1  # t
+3  # u
+5  # v
+5  # w
+7  # x
+4  # y
+8  # z
+0  # blank
+}
+ 
+
+

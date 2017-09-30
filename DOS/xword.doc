@@ -1,0 +1,364 @@
+			XWord v2.4
+			==========
+
+(c) 1995 by Graham Wheeler. XWord is part of WordsWorth, and may
+not be distributed separately.
+
+========================================================================
+
+WordsWorth v1.2 includes a utility called XWord. This utility basically
+provides the same functionality as the CONSULT command in WordsWorth.
+However, it also has the ability to generate lightning-fast multi-word
+anagrams, blockwords, and includes an interactive crossword solving 
+assistant.
+
+XWord is invoked in one of the following ways:
+
+Normal consult:       XWORD [-a] [-A] [-l] [ <dictionary> ]
+Multi-word anagrams:  XWORD [-M[<length>[<cnt>]]] [ <dictionary> ]
+Blockwords:           XWORD [-B] [-G] [ <dictionary> ]
+Crossword Assistant:  XWORD [-X] ( <size> | <layout file> ) [ <dictionary> ]
+
+The default dictionary file if one is not specified is WW.DIC.
+
+Note that you can switch between normal, multi-word anagram
+and blockword mode while running XWord, by entering A or L
+for normal mode, M for multi-word anagram mode, and B for
+blockwords. You can also access these modes from the crossword 
+assistant, but you cannot use the crossword assistant unless 
+you specified the -X flag.
+
+You can get help in the assistant by pressing F1, and in the
+other modes by entering `?'. You can quit the assistant by
+pressing ESC (you will be asked for confirmation) and the
+other modes by entering `Q'.
+
+In all modes other than the assistant, you can get XWord to
+send a copy of the output to the file XWORD.LOG. When you
+quit the assistant, it saves the current crossword layout in 
+the file XWORD.OUT.
+
+You can terminate the current activity in most modes by pressing
+Ctrl-Break. XWord will stop what it is doing and prompt you for
+new commands.
+
+In all modes other than the assistant, XWord maintains a list of
+the last ten input patterns. You can recall the list by entering
+"H", and specify an entry from the list by entering the associated
+number in the list. This gives an easy way of reusing past patterns
+without having to type them in again. At some stage I may make this
+a proper editable history...
+
+
+Normal Consult
+--------------
+
+The -a and -A options tell XWord to find anagrams (like the 'a' 
+and 'A' options in WordsWorth Consult). The -l option allows subsets
+of the letters to be used (like the `All or Some' option in Consult).
+If none of these flags are given XWord will find pattern matches
+of the same length and in the same order specified by the input patterns.
+
+There are two forms of the -l option, -L and -l. If you specify
+-L, then subsets of letters are taken from the pattern prefix, while
+with -l they are taken from the suffix. Thus, to find all words that
+start with CAT you would disable anagrams, enable -L, and enter the
+pattern CAT????????????, while to find those that end with TION you
+would disable anagrams, enable -l, and enter ???????????TION.
+
+During normal consults, the following commands can be used to
+modify the behaviour:
+
+	A - Show words matching anagrams of patterns
+	L - Show words matching any leading subpattern of pattern
+	l - Show words matching any trailing subpattern of pattern
+	R - Avoid showing repeats (misses some matches, tho...)
+
+Patterns can use ? for an unknown character, [] for a range of
+characters, ! to invert a range (thus [!aeiou] is any non-vowel)
+and * in front to force use of a character/range.
+
+The following pattern:
+
+	*[aeiou][!aeiou][!aeiou]
+
+will have the following meanings according to the mode:
+
+	Mode	Meaning
+	-------------------------------------------------------
+	L	All words up to three letters having a single
+			vowel at the start
+	l	All words up to two letters having no vowels,
+			and three letter words with a single
+			vowel at the start
+	A	All three-letter anagrams of a vowel and 
+			two non-vowels
+	AL	As for L, but including anagrams
+	Al	As for l, but including anagrams
+
+The following commands can be used to control the output. These
+apply to multi-word anagram and blockword modes as well:
+
+ D	pause for one second after each match
+ W	Wait for keypress after every 24 lines of output
+ F	Log results to file XWORD.LOG
+
+Note that most of these commands are toggles; i.e. entering the
+command switches the option on if it was off and vice-versa. Enter
+`?' if you want to see what the active settings are at any stage.
+
+When you have the W (wait) option selected, you will be prompted
+for a keypress at the end of each screenfull of output. XWord
+will actually keep computing another screenfull of matches while
+it waits. This means that you can page through the output almost
+instantaneously.
+
+
+Multi-Word Anagrams
+-------------------
+The -M option causes XWord to find multi-word anagrams which can be 
+quite fun (like VEGETARIAN = EATING RAVE). You cannot use CONSULT-style
+patterns, only literal words (optionally separated by spaces), as input.
+XWord's algorithm is extremely fast!
+
+Quite often there will be thousands of possible anagrams and it
+becomes impossible to search out the good ones. There is a
+technique to help in this case - look through some of the possibilities,
+and select a word you think is appropriate in the final anagram.
+Then `subtract' this word from the input, and see what words
+can be made from the remaining letters. For example, consider
+VEGETARIAN. We see that some anagrams have the word RAVE, and 
+decide to use this. This means we must find anagrams of the remaining
+letters, namely GETIAN. We find the word EATING. Thus 
+VEGETARIAN=EATING RAVE. You can do this striking out process by
+hand, or have XWord do it for you. In the latter case, enter the
+main word(s) followed by the word(s) to exclude, separated by a 
+minus. Thus, in the example, we would enter "VEGETARIAN - RAVE".
+
+Another way of limiting the output is to specify a minumum
+word length. Only anagrams consisting of words of at least that
+length will then be shown. To do this, follow the M mode command
+with a single digit (e.g. "M3" interactively, or "-M3" on the
+command line). If you change to some other mode, the minimum
+length will be reset to the default value of 1.
+
+A second digit can be used to specify a limit on the number
+of words. The default value here is zero, which implies no
+limit. For example, "M32" specifies multi-word anagrams of
+two or less words where each word is of length three or more.
+"M3" is equivalent to "M30".
+
+
+Blockwords
+----------
+The -B option (or B command within XWord) enters blockword
+generation mode. You will be prompted for a seed word for the
+blockword, that will be used as the first across word. 
+
+Here is an example of a blockword, with seed XWORD:
+
+    XWORD
+    EERIE
+    BLADE
+    ESTER
+    CHESS
+
+If this takes long with few or no hits, you may prefer the graphic 
+`work-in-progress' display, selected with -G (or G). In this case, any 
+matches can be automatically logged to XWORD.LOG for later retrieval. 
+
+Crossword Assistant
+-------------------
+The -X option enters the interactive crossword assistant. You can
+create a new board by specifying the size, or load a board layout
+from a file. When you exit the board layout is saved to XWORD.OUT -
+if you use the assistant you'll quickly figure out the format of this
+file. There are three examples, CRYPTIC1.BRD,	CRYPTIC2.BRD, and
+CRYPTIC3.BRD, that come with WordsWorth. CRYPTIC2 is a half-done
+crossword that the assistant will complete if you use the small 
+dictionary; that is, invoke XWORD as:
+
+	XWORD -X CRYPTIC2.BRD WWMED.DIC
+
+Note that the 80,000 word dictionary is specified; if you use the
+default large dictionary XWORD will not be able to complete the
+board, as there is more than one unique solution available to it.
+The demo version includes a version of CRYPTIC2.BRD in which all
+words longer than six letters have been marked as dictionary overrides.
+XWord cannot complete the board in this case, but it serves as a
+useful example nontheless.
+
+Usually the first task is to set up a board. Start XWord with
+a board size argument, consisting of the number of rows and number
+of columns (up to 19-by-19). You will be shown a board with all black
+squares. You now have to enter the layout. Note the blue highlighted
+square - this is the board cursor position. You can move it around
+the board with the cursor keys. To mark a square as empty, put the
+cursor on it and type '?'. To reset it to black, put the cursor on
+it and enter '#'. To enter a known letter at a square, put the
+cursor on it and type the letter.
+
+As you enter square contents, the cursor moves automatically,
+generally following the direction you establish initially
+by pressing the right or down cursor keys. An exception is 
+when entering a letter, where the movement follows the layout 
+of the non-black squares.
+
+It is a good idea to set up the board with just `#' and `?' before
+entering any letters. Boards generally have some symmetry - the
+following commands can speed up the entry process:
+
+    `    Mirror-reflect top half of board setup left-to-right
+    '    Copy left half board setup to right half
+    \"   Copy top half board setup to bottom half
+
+Then you should mark any multi-word clues as being multiple words.
+Move on to the letters that start new words (other than the first
+word) and use one (or both) of the following keys:
+
+    ^    Mark square as start of a new down word (brown)
+    >    Mark square as start of a new across word (magenta)
+
+The colour names are the colours XWord uses to display these
+squares. If you set both attributes, the color will be cyan.
+
+If you suspect that there are words that are not in the dictionary
+(such as proper nouns), you need to tell XWord to not consult
+the dictionary for that word. Move on to each letter of the word,
+and mark it with one of the following:
+
+   |    Don't limit current square to admiisible down words
+   -    Don't limit current square to admiisible across words
+   +    Don't limit current square by dictionary at all
+
+These attributes will appear as characters on the board.
+
+Now enter the letters that you know. As you move about, you
+will see two things changing. At the bottom of the screen XWord
+displays all characters that it believes can be entered in the
+current square. If the square is empty, on the right hand side
+of the screen you will see up to 10 down words and 10 cross
+words that can go through the square. The total number of possible
+words across and down is also shown.
+
+What is happening is that XWord is working out all possible
+words that can go down and across through that square, and hence
+what letters can be placed on the square. When the board is nearly
+empty, the number of possible words shown on the right may be in
+the thousands. When it is a lot less than that, but still more than
+ten, you can step through the entire list by pressing Ctrl-A (for
+across words) and Ctrl-D (for down words). After every ten words
+are displayed you will have to press a key before more will be shown.
+You can cancel this operation by pressing ESC.
+
+XWord provides a powerful global restrictions computation. 
+You can get XWord to work out the restrictions for the whole
+board repeatedly until no further restrictions are found. Once
+you have a few words entered this can be done quite quickly. Use
+the backspace key to start a fresh global restriction set. XWord
+also computes these restrictions in the background while waiting for
+you to press a key.
+
+XWord keeps the global restriction results and uses them
+to assist in working out the local restrictions as you move 
+around. You can update the global restrictions quickly by
+pressing the ENTER key. However, if you open up the board
+(by replacing a letter with an empty square, or even a black
+square with a non-black square) then the restrictions must
+be recalculated from scratch. XWord attempts to do this
+automatically when necessary, but just in case, you can 
+force a complete reset of the global restrictions by pressing
+the spacebar.
+
+If XWord finds that a square can have only one possible letter,
+it will display the letter in red, without actually committing
+the letter to the board permanently. If you are happy with the
+letters in red, you can accept them by pressing the `=' key.
+
+Use ESC to quit the assistant and save the board to the XWORD.OUT
+file. Note that red letters are not saved. The save file contains
+the dimensions of the board, and the known layout.
+Here is an example:
+
+13 13
+
+CHAFF#S.....E
+A#.#OMAHA#.#R
+N....#GENUINE
+A#.#..O..#.#C
+SANTA##TEAPOT
+TA......#.#.#
+AR..#.#.#...P
+#O#.#...H...E
+.N..K.##A...R
+.#.#O.D.R#.#V
+....A.O#ACCRA
+.#.#L.V.R#.#D
+RAMPAGE#ELOPE
+
+There are some limitations, due to the fact that we only have a
+single letter to represent each square. Thus if a square contains
+a letter and a flag, or more than one flag, not all of the information
+can be represented. However, in this case the board can be followed by
+additional lines of the form:
+
+<row> <column> <character>
+
+to specify this additional information. The full set of characters
+that can be used is:
+
+	.	Empty square
+	?	Empty square
+	#	Black square
+	^	Start of new down word in multi-word clue
+	>	Start of new across word in multi-word clue
+	+	Do not restrict this square at all
+	|	Do not restrict this square in a downward direction
+	-	Do not restrict this square in an across direction
+	A-Z	Put this letter in the square
+
+Here is an example of such a layout, as saved by XWord to the XWORD.OUT
+file:
+      
+      15 15
+      
+      ; Created by XWord
+
+      #......#......#
+      #.#.#.#.#.#.#.#
+      ....#..........
+      #.#.#.#.#.#.#.#
+      ......#........
+      #.###.#.#.#.#.#
+      .........#....#
+      ###.###.###.###
+      #....#.........
+      #.#.#.#.#.###.#
+      ........#......
+      #.#.#.#.#.#.#.#
+      ..........#....
+      #.#.#.#.#.#.#.#
+      #......#......#
+      
+      
+      2 11 >
+      6 7 ^
+      8 10 >
+      8 12 >
+      8 13 |
+      9 13 |
+      10 13 ^
+      11 7 ^
+      12 6 >
+      
+Note that saved board files can have comment lines starting with 
+semicolons. However, these CANNOT appear before the board dimensions!
+
+You can start an XWord dictionary consultation by pressing `@'.
+When you are finished, exit the consultation with `Q' as usual
+and you will be returned to the crossword assistant.
+
+Have fun!
+gram@aztec.co.za
+
+

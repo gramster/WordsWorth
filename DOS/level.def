@@ -1,0 +1,97 @@
+# Level control. Mostly this involves adding constraints to what
+#  is really a basic process. But who can stand being beaten by 
+#  a computer the whole time? If you want the strongest possible
+#  opponent, your best bet is to disable all of these.
+#
+# Note that when there are no tiles left in the pool, all
+# constraints are ignored.
+#
+#  A number of factors can be used, some of which are handled by
+#  the setup program. The remainder in this file are currently
+#  just defaults. Feel free to change them.
+#
+#  * the minimum and maximum score allowed. The maximum is an
+#		absolute restriction on the programme's score.
+#		Use this if you want to beat the damn thing.
+#		The minimum can be used to get the computer to
+#		discard tiles rather than make a weak move.
+#		A zero value for either means ignore this factor.
+
+MininumAllowedScore = 0
+MaximumAllowedScore = 0
+
+# * search constraints <MIN> and <CNT>. As it searches, the program
+#		counts the number of moves it finds that have a score
+#		of at least <MIN>. Once it reaches <CNT> of these, it
+#		plays the best move it has found thus far.
+#		If you think about this, this gives a lot of control.
+#		It's difficult to predict the effect though.
+#		Make <CNT> zero to disable this.
+# suggested values:
+#	5 40 tends to cut computers score to 40% of the maximum
+
+RestrictedSearchMin = 0
+RestrictedSearchCount = 0
+
+# Minimum and maximum allowed word length (affects computer only)
+
+MinimumWordLength = 0
+MaximumWordLength = 21
+
+# Whether the weight should be calculated on the main word
+# being played only, or on all the cross words as well. 
+# 0 is main word only
+
+IncludeCrossWeights = 0
+
+# Letter weights. A score and a weight
+# are different, as some low-scoring letters (especially `S' and
+# the blank) should be held on to for use in big-scoring plays.
+# They would thus have a negative weight. On the other hand, if
+# it is desirable to get rid of a particular letter as soon as
+# possible, it should have a positive weight. Other letters should
+# have a weight of zero. When WordsWorth discards tiles, it will
+# discard positively weighted letters first, and may discard letters
+# with weight zero if the first action is insufficient. Also,
+# it will discard duplicate letters in some cases. If both a Q and
+# a U are held, usually neither of these will be discarded.
+#
+# Besides constraints on the search, length, and score of words,
+# WordsWorth chooses its move on a weight determined by the
+# formula:
+#
+# weight = score + length_weight_factor * length + 
+#		sum_of_weights_of_letters_played
+#
+
+LetterWeights = {
+0   # A 
+1   # B 
+0   # C 
+0   # D 
+0   # E 
+1   # F 
+0   # G 
+1   # H 
+0   # I 
+2   # J 
+2   # K 
+0   # L 
+1   # M 
+0   # N 
+0   # O 
+0   # P 
+1   # Q 
+0   # R 
+-5  # S 
+0   # T 
+0   # U 
+1   # V 
+1   # W 
+2   # X 
+0   # Y 
+2   # Z 
+-8  # Blank
+}
+ 
+

@@ -1,0 +1,57 @@
+
+WRITE __GRP_ovr   LEN 01990H
+{
+	CODE_AREA
+}
+
+
+ACCESS @DGROUP	_postdevice
+{
+	00040H:00010H  ; equipment flag
+}
+
+
+ACCESS ANYONE
+{
+	VIDEO
+}
+
+
+ACCESS __gr_restorecrtmode	_setvisualpage
+{
+	00040H:00010H  ; equipment flag
+}
+
+
+ACCESS __VideoInt	__c0crtinit
+{
+	00040H:00084H  ; number of rows on screen
+}
+
+
+ACCESS _cprintf	__VideoInt
+{
+	0F000H:0FFEAH
+}
+
+WRITE _farmalloc	_realloc
+{
+	CODE_AREA
+}
+
+WRITE _farfree	_malloc
+{
+	CODE_AREA
+}
+
+
+WRITE e087_Entry	e087_Shortcut
+{
+	CODE_AREA
+}
+
+WRITE ___rover	_farfree
+{
+	CODE_AREA
+}
+

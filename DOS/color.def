@@ -1,0 +1,107 @@
+# Texture and colour specs for a colour system
+
+# COLOURS:		TEXTURES:
+# ==============================================================
+# Black			Solid
+# Blue			Line
+# Green			ThinSlash
+# Cyan			ThickSlash
+# Red			ThickBackslash
+# Magenta		ThinBackslash
+# Brown			ThinHatch 
+# LightGray		ThickHatch 
+# DarkGray 		InterleavingLine 
+# LightBlue		WideSpacedDots 
+# LightGreen		CloseSpacedDots 
+# LightCyan
+# LightRed
+# LightMagenta
+# Yellow
+# White
+#
+# On an EGA/VGA screen, you would usually make all textures solid
+# fill and just use colours. On a mono screen, you would make use
+# of textures over colours. We presume an EGA/VGA here.
+
+# The board squares
+
+BoardColor = Cyan 
+BoardTexture = Solid
+
+# The board's left shadow
+
+BoardLeftShadowColor = DarkGray
+BoardLeftShadowTexture = Solid
+
+# The board's top shadow
+
+BoardTopShadowColor = LightGray
+BoardTopShadowTexture = Solid
+
+# A tile's left shadow.
+
+TileLeftShadowColor = DarkGray
+TileLeftShadowTexture = Solid
+
+# A tile's top shadow.
+
+TileTopShadowColor = LightGray
+TileTopShadowTexture = Solid
+
+# The colour and texture for tile faces.
+
+TileColor = White
+TileTexture = Solid
+
+# The colour and texture for tiles when using the -c option. 
+# Solid fill light blue.
+
+AlternateTileColor = Yellow
+AlternateTileTexture = Solid
+
+# The colour and texture for non-playable squares. Solid fill black.
+
+NonPlayableSquareColor = Black
+NonPlayableSquareTexture = Solid
+
+# The colour and texture of the tile rack wall. Solid fill blue.
+
+RackWallColor = Blue
+RackWallTexture = Solid
+
+# The colour and texture of the tile rack base. Solid fill light green.
+
+RackBaseColor = LightBlue
+RackBaseTexture = Solid
+
+# The next few are colours only.
+
+# The colour to print letters on blank tiles. Red.
+
+BlankTileTextColor = Red
+
+# The colour to print letters on other tiles. Black.
+
+NormalTileTextColor = Black
+
+# The colour to use for messages. White
+
+MessageTextColor = White
+
+# The colour to use for row and column labels. Light gray.
+
+LabelColor = LightGray
+
+# Letters used to represent double, triple, ... letter score squares
+# and their colours
+
+LetterMarks = { $1 $2 $3 $4 $5 }
+LetterMarkColors = { LightBlue Blue LightBlue Blue LightBlue }
+
+# Letters used to represent double, triple, ... word score squares
+
+WordMarks = { $6 $7 $8 $9 $0 }
+WordMarkColors = { LightRed Red LightRed Red LightRed }
+
+
+

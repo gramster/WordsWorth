@@ -1,0 +1,13 @@
+Rows		= 7
+Columns		= 7
+
+boardPositionScore = {
+	BaaaaaB
+	acaaaca
+	aababaa
+	aaaBaaa
+	aababaa
+	acaaaca
+	BaaaaaB
+}
+

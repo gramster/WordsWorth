@@ -1,0 +1,251 @@
+#
+# File:		makefile.b32
+# Author:	Graham Wheeler
+# Created:	1996
+#
+
+WXDIR = e:\wx32
+BCCDIR=c:\bc5
+!include $(WXDIR)\src\makeb32.env
+
+WXLIBDIR = $(WXDIR)\lib
+WXINC = $(WXDIR)\include\msw
+WXBASESRC = $(WXDIR)\src\base
+WXBASEINC = $(WXDIR)\include\base
+WXLIB = $(WXLIBDIR)\wx32.lib
+LIBS=$(WXLIB) cw32 import32
+FINAL=1
+
+TARGET=all
+
+!if "$(FINAL)" == "0"
+LINKFLAGS=/v /Tpe /L$(WXLIBDIR);$(BCCDIR)\lib;..\lib
+OPT = -Od
+DEBUG_FLAGS= -v
+!else
+LINKFLAGS=/Tpe /L$(WXLIBDIR);$(BCCDIR)\lib;..\lib
+OPT = -Od
+DEBUG_FLAGS =
+!endif
+#DICTFLAGS=-DBIGDICT -DREGISTERED
+DICTFLAGS=-DBIGDICT
+CPPFLAGS=$(DEBUG_FLAGS) $(OPT) @$(CFG) $(DICTFLAGS) -DW32 -I..\lib
+
+WWSOURCES = winww.cc dicbuild.cc move.cc dict.cc pool.cc condlg.cc wwdialog.cc wwcanvas.cc wwedit.cc register.cc blowfish.cc block.cc encode.cc
+WWOBJECTS = winww.obj dicbuild.obj move.obj dict.obj pool.obj condlg.obj wwdialog.obj wwcanvas.obj wwedit.obj register.obj blowfish.obj block.obj encode.obj
+
+XWSOURCES = winxw.cc dicbuild.cc xword.cc dict.cc condlg.cc xwdialog.cc register.cc blowfish.cc block.cc encode.cc
+XWOBJECTS = winxw.obj dicbuild.obj xword.obj dict.obj condlg.obj xwdialog.obj register.obj blowfish.obj block.obj encode.obj
+
+DCSOURCES = windic.cc dict.cc
+DCOBJECTS = windic.obj dict.obj
+
+ADSOURCES = admin.cc encode.cc
+ADOBJECTS = admin.obj encode.obj
+
+LIBTARGET = ..\lib\gaf32.lib
+
+GHDR=..\lib\ggame.h ..\lib\gpanel.h ..\lib\gdialog.h ..\lib\gcanvas.h ..\lib\gframe.h ..\lib\gtoolb.h
+
+all: admin.exe lib winxw32.exe winww32.exe
+lib: $(LIBTARGET) 
+
+admin.exe : admin.cc encode.cc blowfish.cc block.cc encode.h blowfish.h block.h
+	bcc32 -P -v admin.cc encode.cc blowfish.cc block.cc
+
+consult.exe : consult.cc dict.cc blowfish.cc block.cc
+	bcc32 -P -v $(DICTFLAGS) consult.cc dict.cc blowfish.cc block.cc
+	-del dict.obj
+#	bcc32 -P -v $(DICTFLAGS) -DPROFILE consult.cc dict.cc blowfish.cc block.cc
+
+#admin.exe : admin.obj encode.obj
+#	bcc32 admin.obj encode.obj
+
+$(LIBTARGET): $(GHDR)
+	cd ..\lib
+	make -f makefile.b32 gaf32.lib
+	cd ..\wxww98
+
+winww32.exe:	$(WWOBJECTS) winww32.def winww32.res $(LIBTARGET)
+  tlink32 $(LINKFLAGS) @&&!
+c0w32.obj $(WWOBJECTS)
+winww32
+nul
+$(LIBTARGET) $(LIBS)
+winww32.def
+!
+        brc32 -K winww32.res
+
+winxw32.exe:	$(XWOBJECTS) winxw32.def winxw32.res $(LIBTARGET)
+  tlink32 $(LINKFLAGS) @&&!
+c0w32.obj $(XWOBJECTS)
+winxw32
+nul
+$(LIBTARGET) $(LIBS)
+winxw32.def
+!
+        brc32 -K winxw32.res
+
+windic32.exe:	$(DCOBJECTS) windic32.def windic32.res
+  tlink32 $(LINKFLAGS) @&&!
+c0w32.obj $(DCOBJECTS)
+windic32
+nul
+$(LIBS)
+windic32.def
+!
+        brc32 -K windic32.res
+
+tstdct32.exe: testdict.obj dict.obj
+	bcc32 -v testdict.obj dict.obj
+	-move testdict.exe tstdct32.exe
+
+.cc.obj:
+	bcc32 $(CPPFLAGS) -c {$< }
+
+.c.obj:
+	bcc32 $(CPPFLAGS) -P- -c {$< }
+
+winxw.obj: winxw.cc xword.h condlg.h xwdialog.h winxw.h dict.h winids.h \
+		dicbuild.h register.h encode.h \
+		$(GHDR)
+
+xword.obj: xword.cc xword.h dict.h ..\lib\ggame.h
+
+winww.obj: winww.cc wwedit.h wwcanvas.h winww.h dicbuild.h \
+		wwdialog.h condlg.h pool.h dict.h dicbuild.h winids.h \
+		register.h encode.h $(GHDR)
+
+wwedit.obj: wwedit.cc $(GHDR) pool.h dict.h wwedit.h wwcanvas.h wwdialog.h \
+	winww.h
+
+wwcanvas.obj: wwcanvas.cc dict.h pool.h $(GHDR) wwedit.h \
+	wwcanvas.h wwdialog.h winww.h
+
+condlg.obj: condlg.cc condlg.h dict.h pool.h $(GHDR)
+
+xwdialog.obj: xwdialog.cc xwdialog.h winxw.h $(GHDR) xword.h
+
+wwdialog.obj: wwdialog.cc $(GHDR) dict.h pool.h wwedit.h \
+		wwcanvas.h wwdialog.h winww.h
+
+dict.obj: dict.cc dict.h profile.h blowfish.h block.h 
+
+move.obj: move.cc dict.h pool.h
+
+pool.obj: pool.cc pool.h dict.h
+
+testdict.obj: testdict.cc dict.h
+
+gdialog.obj: gdialog.cc $(GHDR)
+
+gcanvas.obj: gcanvas.cc $(GHDR)
+
+gpanel.obj: gpanel.cc $(GHDR)
+
+gmenu.obj: gmenu.cc $(GHDR)
+
+gframe.obj: gframe.cc $(GHDR)
+
+dicbuild.obj: dicbuild.cc dicbuild.h winids.h $(GHDR)
+
+windic.obj: windic.cc dicbuild.h winids.h
+
+blowfish.obj: blowfish.cc blowfish.h block.h
+
+block.obj: block.cc block.h
+
+register.obj: register.cc register.h block.h blowfish.h encode.h dict.h
+
+encode.obj: encode.cc encode.h
+
+admin.obj: admin.cc encode.h
+
+winww32.res : winww32.rc $(WXDIR)\include\msw\wx.rc
+    brc32 -r /i$(BCCDIR)\include /i$(WXDIR)\include\msw /i$(WXDIR)\contrib\fafa winww32
+
+winxw32.res : winxw32.rc $(WXDIR)\include\msw\wx.rc
+    brc32 -r /i$(BCCDIR)\include /i$(WXDIR)\include\msw /i$(WXDIR)\contrib\fafa winxw32
+
+windic32.res : windic32.rc $(WXDIR)\include\msw\wx.rc
+    brc32 -r /i$(BCCDIR)\include /i$(WXDIR)\include\msw /i$(WXDIR)\contrib\fafa windic32
+
+cleandic32:
+        -erase windic.obj
+        -erase dict.obj
+        -erase windic32.exe
+
+clean:
+        -erase *.obj 
+	-erase winxw32.exe 
+	-erase winww32.exe 
+	-erase windic32.exe 
+	-erase *.res 
+	-erase *.map 
+	-erase *.rws
+
+
+shield: DATA\winww32.exe DATA\winxw32.exe \
+	DATA\wwdemo.dic DATA\WINDOWS\winww.ini \
+	DATA\WINDOWS\winxw.ini DATA\readme.txt DATA\thes.dat \
+	DATA\winxw.hlp DATA\winww.hlp
+	cd SETUP
+	.\compile setup.rul
+	.\icomp UNINST.EXE _ISRES.DLL _SETUP.LIB
+	copy _SETUP.LIB ..\DISK1
+	cd ..
+	del DATA.Z
+	SETUP\icomp DATA\*.* DATA.Z -I
+	copy DATA.Z DISK1
+	copy SETUP\SETUP.EXE DISK1
+	copy SETUP\_SETUP.DLL DISK1
+	copy SETUP\_ISDEL.EXE DISK1
+	cd SETUP
+	.\packlist SETUP.LST
+	copy SETUP.PKG ..\DISK1
+	copy SETUP.INS ..\DISK1
+	copy UNINST.EXE ..\DISK1
+	cd ..
+	
+	
+#	"c:\Program Files\Sterling\InstallShield\Program\compile" setup.rul
+
+	
+DATA\winww32.exe: winww32.exe
+	copy winww32.exe DATA
+	tdstrp32 DATA\winww32.exe
+
+DATA\winxw32.exe: winxw32.exe
+	copy winxw32.exe DATA
+	tdstrp32 DATA\winxw32.exe
+
+DATA\wwdemo.dic: wwdemo.dic
+	copy wwdemo.dic DATA
+
+DATA\winww.hlp: winww.hlp
+	copy winww.hlp DATA
+
+DATA\winxw.hlp: winxw.hlp
+	copy winxw.hlp DATA
+
+DATA\thes.dat: thes.dat
+	copy thes.dat DATA
+
+DATA\WINDOWS\winww.ini: winww.ini
+	copy winww.ini DATA\SHARED
+
+DATA\WINDOWS\winxw.ini: winxw.ini
+	copy winxw.ini DATA\SHARED
+
+DATA\readme.txt :readme.txt
+	copy readme.txt DATA
+
+
+
+
+
+
+
+
+
+

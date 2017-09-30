@@ -1,0 +1,49 @@
+# No letters already on start board
+
+@1
+
+# computer's starting rack
+
+EETTUW_
+
+# human's starting rack
+
+AGISTUV
+
+# Move record
+
+1 1 A H E VITA +FNSN *14
+2 0 A H K TWEET +OIEAI *36
+3 1 A G F SUNG +JEEA *15
+4 0 A G N AI +UV *6
+5 1 D G I -ENE +ROR *10
+6 0 A I J VIE +PTE *8
+7 1 D J H RAJ +QEA *20
+8 0 D E K POT--Es +BEDBD *32
+9 1 A M H AFORE +KAOOD *22
+10 0 A J K -BBED +ZMAC *16
+11 1 D H E -ODKA +ATRE *26
+12 0 D D J CUM +DLL *27
+13 1 A K E -AR-T +RFU *13
+14 0 D J O -UD +WE *7
+15 1 A M A FORES +OEAAG *26
+16 0 D L N ADZE +E_IS *31
+17 1 A J B GOU-A +HORO *17
+18 0 D J M -EL +NL *9
+19 1 D L D H-RO +TLN *26
+20 0 A O K SIN-W +MNIY *27
+21 1 D M F TEA +OHC *10
+22 0 A F M IN +NI *9
+23 1 A L A OH +II *17
+24 0 A F M --N +X *6
+25 1 D G C COL-N +GPRY *11
+26 0 P MXL +XLS *0
+27 1 A F D GIP + *23
+28 0 A C J SeXILY + *38
+29 1 A O F -RMY + *27
+
+
+# terminating marker
+
+0
+

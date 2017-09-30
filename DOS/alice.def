@@ -1,0 +1,67 @@
+# The values here are based on the text of Alice in Wonderland
+
+LetterFrequencies = {
+8  # A 
+1  # B 
+2  # C 
+5  # D 
+13 # E 
+2  # F 
+2  # G 
+7  # H 
+7  # I 
+1  # J 
+1  # K 
+4  # L 
+2  # M 
+7  # N 
+8  # O 
+2  # P 
+1  # Q 
+5  # R 
+6  # S 
+10 # T 
+3  # U 
+1  # V 
+2  # W 
+1  # X 
+2  # Y 
+1  # Z 
+2  # Blank
+}
+ 
+# The scores here are based on 2*log(15000/freq) using the
+# original frequencies, not the approximations above.
+
+LetterScores = {
+1   # a
+5   # b
+4   # c
+2   # d
+0   # e
+4   # f
+4   # g
+2   # h
+2   # i
+9   # j
+5   # k
+2   # l
+4   # m
+2   # n
+1   # o
+5   # p
+10  # q
+2   # r
+2   # s
+1   # t
+3   # u
+6   # v
+4   # w
+9   # x
+4   # y
+11  # z
+0   # blank
+}
+ 
+
+

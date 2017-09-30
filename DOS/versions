@@ -1,0 +1,458 @@
+Versions
+========
+v0.1.0	- played itself in text mode, no blanks
+v0.1.1  - blank tiles introduced, score fully implemented
+-------------------------------------------------------------------------
+v0.2    - accepted user moves, no blanks
+v0.2.1  - accepted user moves, with blanks
+v0.2.2  - user score implemented
+v0.2.3  - sundry bugs fixed
+-------------------------------------------------------------------------
+v0.3    - graphics at last!
+v0.3.1  - blocking squares (@) added to config file
+v0.3.2	- user skip move and discard tiles added
+
+v0.3.3	- added beeps and slower tile placement for computer
+	  fixed bugs:
+		* if computer played last move in game, this move
+			wasn't shown
+		* if computer passed, it threw in all its tiles and
+			didn't draw any out
+		* `shadows' on tiles were drawn when they shouldn't
+			be, overwriting parts of existing tiles
+	Added -D command line option to view computers tiles
+v0.3.3a - Added a random `replace move' option to computer move, so 
+	that if a move with the same max score is found it might be used
+	instead.
+-------------------------------------------------------------------------
+v0.4 - Added a word length weighting to the move algorithm. The weighting
+	can be set in the configuration file. Also settable in this file
+	are the letters used to represent single/double word/letter squares.
+	This is useful in particular on monochrome or grey-scale screens.
+	The program now cleans up on exit, including on Ctrl-Break,
+	and prints the final score.
+	Stalemate situations are now recognised.
+
+v0.4.1 - Fixed up black squares
+	Gave board a 3-d shadow
+-------------------------------------------------------------------------
+v0.5 - Combined strategy.exe and ww.exe. Added a whole lot of command
+	line options to control strategy testing (-s, -S and -Q).
+	Added a -c command line option to distinguish colours
+	Added -H (help) command line option
+	Added level control in the form of score limits, search
+	constraints <MIN> and <CNT>, and letter weights for each
+	letter type.
+	Fixed bug reported by Jeremy, where one could play a word
+	in front of another (eg CAN -> WALKCAN) without the whole
+	thing being checked. This should only ever have occurred
+	with the human player, although I think Jer claimed otherwise.
+	Must check with him.
+	More intelligent tile discarding algorithm. See ww.cfg letter
+	weights for some details.
+	Better control over how first move must be played.
+	Added ability to override dictionary lookup on user words.
+	Added minimum and maximum allowed word lengths.
+	Fixed a bug in the 3d effect of tiles in the first row/column.
+	Partially implemented loading a game from a cfg file.
+	Must just do move loading (and then obviously saving).
+	Added penalty score at end for tiles still on rack.
+	You can now play additional games without reexiting to
+	DOS each time (and the dictionary is only loaded once,
+	although the config file is reloaded each time). This may
+	have a bug, as in one game I found the computer didn't
+	play through the start column, and this had never occurred
+	before (it occurred on the third game played without exiting).
+	Rescaled tiles in big boards and tested all board sizes from
+	7x7 to 21x21.
+	Added load and save game, and hint and undo command options.
+	Games can be loaded off the command line. If a config file
+	is specified on the command line, it must be preceded by a
+	-f argument.
+	
+	All this in one weekend!
+
+v0.5.1 Fixed bugs:
+	1) The 3d bug fix in v0.5 introduced a bug in the tile colouring
+		option -c where the leftmost letter in the players rack
+		was coloured white instead of blue.
+	2) The closing message used to print out 
+		`Thanks for playing WordsWorth v0.4'
+	   It now prints out the current version, whatever that may be.
+	3) The random number generator was being reseeded at the start
+		of each game with the same number.
+	4) The use of pre-placed tiles caused the first move to be
+		invalid. There were two approaches to this - including
+		cross checks in leftPart if the move was the first
+		move (very messy); or treating the situation as though
+		it was not the first move. The latter solution was
+		adopted as I believe it to be both more desireable and
+		considerably simpler to fix.
+
+	Some of these bugs are described in more detail in the
+	README file. There are still two known bugs that are
+	difficult to repeat that must be fixed.
+
+	When you press enter when prompted for a move, you no longer
+	get a musical note being printed, and an `Option not available'
+	message, but are simply reprompted. Similarly when you are prompted
+	for row, column and word.
+
+v0.5.2
+	Fixed bugs:
+
+	1) Move undo resulted in the row and column labels disappearing.
+
+	2) The unplayable hint bug described in the v0.5 README has
+		been fixed.
+
+	3) Bugs introduced in the rationalisation of code in io2.c
+		from v0.5.1 have been fixed.
+
+	Bugs detected:
+
+	1) A game was saved when there were no tiles left in the pool.
+		When this game was reloaded, there was 1 tile in the pool,
+		although this only disappeared on programs second move.
+
+	Added features:
+
+	1) A -B0 or -B1 command line option lets you specify who
+		plays first.
+
+------------------------------------------------------------------------
+v0.6
+	Added Features:
+
+	1) A REDO option to undo an undo has been added.
+
+	2) You can now override the dictionary on both the main
+		word and the cross words.
+
+	3) A new option in the config file lets you control
+		the strategy used by the control player (when
+		the -s, -S or -Q option is used) and for hints.
+		This can be either a score maximiser, or the
+		same strategy the program is playing against you.
+
+	4) Another option in the config file lets you control
+		whether weight factors other than score are calculated
+		for the main move only, or for all the cross words
+		as well. Previously cross words were included, which
+		is intuitively wrong when you think about it.
+
+	5) The Hint option now shows you the score as well.
+
+	6) The program now shows a message saying how many tiles
+		it swapped when it passes.
+
+	7) An adaptive strategy is now supported that attempts
+		to provide you with an opponent of similar skill.
+		See the config file.
+
+	8) Letters are now more centered on the tiles.
+
+	9) You can now get up to twenty different hints by
+		using `H' repeatedly.
+
+	10) Added a dictionary consult option, which generates
+		anagrams of the letters you specify, including
+		blank tiles and letter sets (such as [AEIOU] for
+		any one vowel).
+
+	11) Undo now doesn't clear the whole screen and redraw
+		everything. The result is that it is less jerky
+		than before. It's still not perfect, but cleaning 
+		up tiles with a 3d shadow ain't that easy.
+
+	12) Colours and textures of all objects are now be specified
+		in the configuration file. This is to enable Hercules
+		support. I now just need to experiment to find a
+		decent set of values for the Herc.
+
+	13) You can now get the program to play a different move
+		by pressing `N'. Up to twenty different moves can
+		be cycled through.
+
+	Bugs Fixed:
+
+	1) ESC is handled more logically - it cancels the current
+		action.
+
+	2) A bad bug in the tile draw routine has been fixed. This
+		routine used to draw tiles with equal probability
+		regardless of how many of each letter there were.
+		In other words, the method was:
+
+			Choose a letter from 'A' to 'Z', or '_'
+			If there is such a letter in the pool,
+				draw it out, else try again
+
+		The new method is: choose a tile number. To illustrate
+		this, say there are five tiles left, two 'A's, a 'Z', a
+		'Q' and a 'B'. The numbering is:
+
+			0 - A
+			1 - A
+			2 - B
+			3 - Q
+			4 - Z
+
+		The program chooses a number from 0 to 4, and draws
+		that tile.
+
+	3) Some bugs in Undo, Redo and Load Game have been fixed.
+		Also, the move record gets wiped if you play
+		undone moves differently, to prevent you from
+		then doing a REDO with inconsistent info.
+		I think that these all work correctly now, although
+		they haven't been exhasutively tested.
+
+v0.6.1 After testing WordsWorth on a Hercules card, the scaling
+	of graphics is now done separately for the X and Y axes
+	(a Herc is much more `rectangular' than a VGA). This still
+	has to be retested on Herc. It has been tested at 21x21,
+	15x15 and 7x7 on VGA, and seems to be pretty much as it was.
+
+	Some more constraint checking is done on the configuration
+	file. This was necessary as bad values for the starting
+	row & column were accepted causing garbage results.
+	
+v0.6.2 Tile letters are now being scaled differently (the tile
+	scores are unchanged), hopefully more logically. This 
+	has resulted in a smaller letter in the 15x15 case.
+	One aspect of graphics that could still do with a rework
+	is the rack drawing section, particularly when -D is used.
+
+v0.6.3
+	The dictionary is now encrypted using the name of the
+	registered owner as the key.
+	The configuration file now is much more free form and
+	readable, and every entry has a default and so is optional.
+	It can no longer contain a saved game, though.
+	The configuration and saved game file formats are now
+	documented in appendices in the README file.
+
+v0.6.4
+	The letters and colours used for double/triple letter/word
+	squares are now fully configurable up to ten levels (effectively
+	11 * letter/word score).
+
+	Fixed a bug in the registration info decoding.
+
+	The tile rack(s) display is now truncated at the right hand
+	side of the board, regardless of how many tiles are on the
+	rack(s), so as not to interfere with the text. Thus the number
+	of tiles drawn at a time should be at least one less than the
+	width of the board, and, if the program's tiles are also to
+	be displayed, the number of tiles should be less than half the
+	width of the board.
+
+v0.6.5
+	Changed the end game slightly. You can now save, quit
+	or replay.
+	
+	When there are no tiles left in the pool, and you pass
+	a move, you are no longer prompted to enter drop
+	characters.
+
+	Rationalised a lot of the serialisation of copies, and
+	split into restricted unregistered and full registered
+	versions. Built automated registered copy builder.
+
+	Added free form option for unanchored play.
+
+	Got rid of the BGI error message that appeared sometimes
+	when exiting.
+
+	Added BlankThreshold to configuration.
+
+	Added VideoMode and VideoCard to configuration, and added
+	SuperVGA support including autodetect for VESA cards.
+
+	Started adding `blank tile exchange' move type.
+
+	Fixed a bug in the computation of cross checks related to the
+	use of black squares.
+
+	Fixed the clearing of edit text in the dictionary consult
+	pattern.
+
+	Fixed up the "BGI not initialised" bug once and for all;
+	the `Q' move handler was not reinitialising graphics after
+	falling through shutdown() without exit()ing. It now returns
+	-6 which tells the main program to start a new game.
+
+	When there are no tiles left other than those on the
+	racks, the programs moves and hints are computed
+	on score rather than weight, to ensure that it 
+	finds moves.
+
+	There is a (seemingly very minor and rare) bug in the hints -
+	see TODO.
+
+v0.6.6 - broke lots of stuff in adding blank tile exchanging.
+	      
+	The board drawing is now very different. Before, only 
+	the newly played tiles would be drawn after the initial
+	drawing, except with undo, in which case everything was
+	redrawn. Now there are separate logical and physical board
+	images (a la Curses) which are synchronised with each other.
+	It is easy to see the resulting undo (even though the whole
+	board is still redrawn after an undo; this isn't too noticeable
+	the way it is done).
+
+v0.6.7 Caught some potential bugs in the user move section (eg doing
+	a N after a game load).
+
+	Got move undo/redo/load/save all working again, including with
+	blank tile exchanges.
+
+v0.6.8	Added territorial form of `free form' play. See the FreeForm
+	configuration variable, and the end of section 4.8 in the README
+	file.
+
+	Added texture and colour tables for the doubel/triple/...
+	word and letter score square backgrounds to configuration.
+
+	Completed Xchange move type.
+
+	Fixed or improved several minor things.
+
+	You can now hit a key when tiles are being placed to speed
+	this up.
+
+	Undo screen updating considerably improved.
+
+v0.7	Just renamed as a number of changes had been made.
+
+	Fixed a bug in program move validation; the left part was
+	only being validated with cross-checks on across moves.
+
+	All calls to closegraph are now followed by textmode(C80);
+	Check what this does on hercules.
+
+	A `Loading words...' message is now printed on dictionary load.
+
+	The `first' flag was being cleared before recording the move that
+	cleared it.
+
+	Autoplay games can now be interrupted and resumed.
+
+	showCompTiles flag can now be toggled on and off during play
+	with `V' key.
+
+	Added negation operator to consult patterns, plus a persistent
+	consult pattern buffer. getUserInput now has a 2 level escape -
+	first escape clears input, second exits. Also, long input just
+	scrolls horizontally.
+
+	Added mandatory operator to consult patterns, and added new
+	font characters for double/triple word/letter scores.
+
+	There are occasional bugs in the undo/redo. I think these are
+		related to exchange moves. In some situations, I have
+		undone few moves, made a new one, and then pressed REDO
+		and there have been moves to redo, which should not be
+		there. This affects saved games as well. It isn't too
+		serious, but must be fixed. So far I have been unable
+		to repeat these.
+
+	Test, test, test!
+
+===================== Version 1 shipped ==============================
+
+Version 1.1:
+	Allowed config file to be split up and included.
+	Added configureable setup program.
+	Made the existence of a configuration file mandatory.
+	Fixed a coupla baby bugs.
+
+Version 1.1a:
+	Fixed a bug in the scoring of human moves.
+	Removed a couple of bits of redundant code.
+	Shortened some of the delays.
+	Added default values to setup.
+
+Version 1.1b
+	Removed the -Q arg, improved -S/-s handling
+	Fixed a bug in reporting bad cross words
+	Cleaned up some of the code
+	Linted the program
+
+Version 1.1c
+	Cleaned up the return values of the getUserCmd routine,
+	and a lot of the handling of the `first' variable. Most
+	of this is basically untested as yet!
+	Fixed the score bugs, I think.
+	Added encrypted key to dictionary for use by Windows
+	version.
+	Added buildict.exe utility and exclusion dictionary
+	WORDS.NO.
+
+	NOTE - there are still some bugs lurking:
+		* occasional assertion violation
+		* apparently WW can end a game when the human can
+			still make words.
+
+Version 1.1d
+	Fixed a bug in getTiles that prevented the game from ending
+	when a player played their last tile
+
+Version 1.1e (6/1/94)
+	Fixed a bug in ww.c/getTiles routine where the array
+	of drawn tiles was not being initialised. This affected
+	the game recorder and caused saved games saved with empty
+	draws (such as a complete game with an exhausted tile
+	pool) to be rejected for replay by ww.
+
+	Fixed a bug in the calculation of average score per move.
+	Now print out the penalties as well.
+
+	The word marking in dictionary consult will not work
+	properly, and there is no solution to this other than
+	to take it out. It is only needed for anagrams to prevent
+	duplicates, so it is better without than with.
+
+Version 1.1f (20/2/94)
+	Fixed bugs in territorial play, and initialised penalties
+	to zero. The former caused drawTile to be cleaned up a bit;
+	the down side is that the tiles in the intro are 2-d (but 
+	this arguably looks better anyway).
+
+Version 1.1g (24/4/94)
+	Now show current best move in Watch mode.
+	Added ability to prevent use of letter weights in choosing
+		word.
+	Added penalties for opening double/triple/... word squares.
+	Fixed a bug that caused gc3 to bomb out with an assertion
+		violation.
+	Added -Q option. -S and -Q can now take numeric arguments
+		for the number of games.
+	Fixed a bug in the nodes macro.
+
+Version 1.1h (26/5/94)
+	You can now use `a' or `A' for anagrams in consult. These
+	are the same as the xword arguments -a and -A.
+        The consult algorithm has been improved. It now doesn't
+        produce hundreds of duplicates.
+	Fixed bug in replay of blank exchanges.
+	Fixed bug in score evaluation when user overrides dictionary.
+	Now include XWORD.EXE, which also now does super-fast multi-word
+	anagrams.
+
+Version 1.2 (21/6/94)
+	(THIS MUST BE THOROUGHLY TESTED STILL!)
+	This is a major version freeze as all known bugs have been
+	fixed, the consult function enhanced to handle patterns
+	of arbitrary length with known endings, Xword has been
+	enhanced to include an interactive crossword assistant,
+	and the dictionary has been rebuilt with some words added
+	and some removed. The dictionary builder has also been
+	speeded up to about 60% of its previous execution time.
+
+Version 1.2.1 (15/10/94)
+	Basic mouse support added
+
+
+

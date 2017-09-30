@@ -1,0 +1,174 @@
+Record draw [UERNIDR] for player 1
+Tiles: { 1 D's 1 E's 1 I's 1 N's 2 R's 1 U's  }
+Record draw [EOBCGKY] for player 0
+Tiles: { 1 B's 1 C's 1 E's 1 G's 1 K's 1 O's 1 Y's  }
+========================================
+Checking row 1
+========================================
+Checking row 2
+========================================
+Checking row 3
+========================================
+Checking row 4
+========================================
+Checking row 5
+========================================
+Checking row 6
+========================================
+Checking row 7
+========================================
+Checking row 8
+NEW MOVE FOUND [BE], score 8, weight 5
+NEW MOVE FOUND [BO], score 8, weight 5
+NEW MOVE FOUND [BY], score 14, weight 5
+NEW MOVE FOUND [OB], score 8, weight 5
+NEW MOVE FOUND [BE], score 8, weight 5
+NEW MOVE FOUND [BECK], score 24, weight 5
+NEW MOVE FOUND [BEG], score 12, weight 7
+NEW MOVE FOUND [BEY], score 16, weight 7
+NEW MOVE FOUND [BOG], score 12, weight 7
+NEW MOVE FOUND [BOY], score 16, weight 7
+NEW MOVE FOUND [BYE], score 16, weight 7
+NEW MOVE FOUND [COB], score 14, weight 7
+NEW MOVE FOUND [GOB], score 12, weight 7
+NEW MOVE FOUND [KEG], score 16, weight 8
+NEW MOVE FOUND [KEY], score 20, weight 8
+NEW MOVE FOUND [KOB], score 18, weight 9
+========================================
+Checking row 9
+========================================
+Checking row 10
+========================================
+Checking row 11
+========================================
+Checking row 12
+========================================
+Checking row 13
+========================================
+Checking row 14
+========================================
+Checking row 15
+========================================
+Checking col 1
+========================================
+Checking col 2
+========================================
+Checking col 3
+========================================
+Checking col 4
+========================================
+Checking col 5
+========================================
+Checking col 6
+========================================
+Checking col 7
+========================================
+Checking col 8
+NEW MOVE FOUND [KOB], score 18, weight 9
+========================================
+Checking col 9
+========================================
+Checking col 10
+========================================
+Checking col 11
+========================================
+Checking col 12
+========================================
+Checking col 13
+========================================
+Checking col 14
+========================================
+Checking col 15
+Done
+Best move is KOB starting at (8,7) going across with score 18
+Record move A 8 7 [KOB] for player 0
+In putLetter(0, 8, 7, K)
+In putLetter(0, 8, 8, O)
+In putLetter(0, 8, 9, B)
+Record draw [MUB] for player 0
+Tiles: { 1 B's 1 C's 1 E's 1 G's 1 M's 1 U's 1 Y's  }
+========================================
+Checking row 1
+========================================
+Checking row 2
+========================================
+Checking row 3
+========================================
+Checking row 4
+========================================
+Checking row 5
+========================================
+Checking row 6
+========================================
+Checking row 7
+========================================
+Checking row 8
+NEW MOVE FOUND [BE], score 8, weight 5
+NEW MOVE FOUND [BO], score 8, weight 5
+NEW MOVE FOUND [BY], score 14, weight 5
+NEW MOVE FOUND [OB], score 8, weight 5
+NEW MOVE FOUND [BE], score 8, weight 5
+NEW MOVE FOUND [BECK], score 24, weight 5
+NEW MOVE FOUND [BEG], score 12, weight 7
+NEW MOVE FOUND [BEY], score 16, weight 7
+NEW MOVE FOUND [BOG], score 12, weight 7
+NEW MOVE FOUND [BOY], score 16, weight 7
+NEW MOVE FOUND [BYE], score 16, weight 7
+NEW MOVE FOUND [COB], score 14, weight 7
+NEW MOVE FOUND [GOB], score 12, weight 7
+NEW MOVE FOUND [KEG], score 16, weight 8
+NEW MOVE FOUND [KEY], score 20, weight 8
+NEW MOVE FOUND [KOB], score 18, weight 9
+========================================
+Checking row 9
+========================================
+Checking row 10
+========================================
+Checking row 11
+========================================
+Checking row 12
+========================================
+Checking row 13
+========================================
+Checking row 14
+========================================
+Checking row 15
+========================================
+Checking col 1
+========================================
+Checking col 2
+========================================
+Checking col 3
+========================================
+Checking col 4
+========================================
+Checking col 5
+========================================
+Checking col 6
+========================================
+Checking col 7
+========================================
+Checking col 8
+NEW MOVE FOUND [KOB], score 18, weight 9
+========================================
+Checking col 9
+========================================
+Checking col 10
+========================================
+Checking col 11
+========================================
+Checking col 12
+========================================
+Checking col 13
+========================================
+Checking col 14
+========================================
+Checking col 15
+Done
+Best move is KOB starting at (7,8) going down with score 18
+Record move A 8 7 [KEY] for player 0
+In putLetter(0, 8, 7, K)
+In putLetter(0, 8, 8, E)
+In putLetter(0, 8, 9, Y)
+Record draw [SXS] for player 0
+Tiles: { 1 B's 1 C's 1 G's 1 O's 2 S's 1 X's  }

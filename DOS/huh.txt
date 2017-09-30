@@ -1,0 +1,7 @@
+Not so easy to see what happened here if you didn't play the game. 
+I just decided to save by chance, and WW had made two substitutions,
+one an S, the other an I (ie. they were blanks on the board in those
+capacities) This was fine, but when I loaded the game, as it stepped
+through the moves where it made the substitutions, it substituted the
+blanks for A's in both cases. So, they were fine in the original
+game, but when reloaded, somehow they just became A's.

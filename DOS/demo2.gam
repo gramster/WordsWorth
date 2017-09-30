@@ -1,0 +1,52 @@
+# No letters already on start board
+
+@1
+
+# computer's starting rack
+
+AEILRST
+
+# human's starting rack
+
+INPRTUW
+
+# Move record
+
+1 0 D G H LAT +CWA *6
+2 1 A J F TWIRP +AS_NA *21
+3 0 A I G A-E +TO *14
+4 1 A K I NANA +ZYVE *11
+5 0 A H G W-T +_U *19
+6 1 D H L ZoU-VE +YEQNA *54
+7 0 A H K C-aRS +RCIG *45
+8 1 A G M YEA +LEO *11
+9 0 A F J COIR +MTOD *18
+10 1 A L F NOSEY +NEIVP *18
+11 0 D C F MIDGUT +OAIMIT *21
+12 1 D L H -PIV +EOH *21
+13 0 D C E AMI +UIR *24
+14 1 D L G -OH +XD *17
+15 0 D J J ---OUT +BKB *13
+16 1 A C C EX--EN +NERO *32
+17 0 D A H BO-K +AGF *45
+18 1 A B A OLDER +TOJIL *30
+19 0 D A A F-RB +UED *36
+20 1 A K E JO +SE *20
+21 0 A F E E-G +DA *11
+22 1 D B G T-L +AS *18
+23 0 D A A ----AD +EG *12
+24 1 A O J -INEAS +LEONE *21
+25 0 A N M AD +RF *14
+26 1 D F N S--ENE + *16
+27 0 A A H -RIEF + *14
+28 1 A A C OH + *30
+29 0 D A L -UG + *7
+30 1 A D A -I + *4
+33 0 D K O -I + *3
+32 1 A K N -L + *2
+
+
+# terminating marker
+
+0
+

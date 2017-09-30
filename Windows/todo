@@ -1,0 +1,36 @@
+Print scaling.and help.
+
+Major speedups should be possible when doing recursive consults
+if the Dictionary::FindPoolAllocation and  Dictionary::RemoveFromPool(int c)
+routines could be eliminated in favour of some additional recursive
+processing. 
+
+Alternatively, try deferring the pool check until the word is
+complete.
+
+Toolbar 
+Context-sensitive help?
+
+Change consults to walk the dictionary and test words for matches,
+if that isn't what is already being done. Basically we want to
+only look at each word once.
+
+Testing! Save the game whenever anomalous behaviour is found.
+Fix the save file dialog to add the default suffix if none
+is specified.
+
+XWORD
+======
+Big dict for xword with proper nouns.
+
+WW
+==
+Tidy up a couple of the dialogs (e.g. CfgGameDlg)
+
+BOTH
+====
+Printing boards.
+Semantic dict would be nice.
+Context sensitive help?
+
+

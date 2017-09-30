@@ -1,0 +1,17 @@
+Still got dictionary problems. Check these:
+	HAO
+	OVERTART
+	LUV
+	ENQ
+	WISHT?
+	ALT
+	
+Test everything again, esp save/load games.
+Test all sample consults in WW.DOC.
+
+Limit exchanges to at most one per move.
+Then, just use an array to store the move record,
+which should simplify things a lot in record.c.
+
+CHECK TWO LETTER WORDS LIKE OZ, RD!
+
